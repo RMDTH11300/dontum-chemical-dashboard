@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard ข้อมูลสารเคมีภายในโรงพยาบาลดอนตูม">
+  <meta name="theme-color" content="#12324a">
+  <title>Dashboard สารเคมี | โรงพยาบาลดอนตูม</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="assets/style.css?v=1.0.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="assets/config.js?v=1.0.0"></script>
+  <script src="assets/app.js?v=1.0.0" defer></script>
+</head>
+<body>
+  <div id="loadingScreen" class="loading-screen" role="status" aria-live="polite">
+    <div class="loader"></div>
+    <strong>กำลังโหลดข้อมูลสารเคมีจาก Google Sheets…</strong>
+    <span>โปรดตรวจสอบว่าไฟล์อนุญาตให้ผู้มีลิงก์ดูได้</span>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">CH</div>
+      <div>
+        <span class="eyebrow">DON TUM CHEMICAL INVENTORY DASHBOARD</span>
+        <h1>ระบบข้อมูลสารเคมีภายในโรงพยาบาล</h1>
+        <p>โรงพยาบาลดอนตูม จังหวัดนครปฐม</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <div class="updated-box">
+        <span>ข้อมูลล่าสุด</span>
+        <b id="lastUpdated">–</b>
+      </div>
+      <button id="refreshBtn" class="btn primary" type="button">↻ รีเฟรชข้อมูล</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">
+        <strong>ตัวกรองข้อมูล</strong>
+        <button id="clearFiltersBtn" class="text-btn" type="button">ล้างทั้งหมด</button>
+      </div>
+
+      <label class="field">
+        <span>ค้นหา</span>
+        <input id="searchInput" type="search" placeholder="ชื่อสารเคมี, CAS, สถานที่จัดเก็บ…">
+      </label>
+
+      <label class="field">
+        <span>หน่วยงาน</span>
+        <select id="departmentFilter"><option value="">ทุกหน่วยงาน</option></select>
+      </label>
+
+      <label class="field">
+        <span>ประเภท/กลุ่มอันตราย</span>
+        <select id="hazardFilter"><option value="">ทุกประเภท</option></select>
+      </label>
+
+      <label class="field">
+        <span>สถานะวันหมดอายุ</span>
+        <select id="expiryFilter">
+          <option value="">ทุกสถานะ</option>
+          <option value="expired">หมดอายุแล้ว</option>
+          <option value="warning">ใกล้หมดอายุ</option>
+          <option value="active">ยังไม่หมดอายุ</option>
+          <option value="unknown">ไม่ระบุวันหมดอายุ</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>สถานที่จัดเก็บ</span>
+        <select id="locationFilter"><option value="">ทุกสถานที่</option></select>
+      </label>
+
+      <div class="side-note">
+        <b>เกณฑ์ใกล้หมดอายุ</b>
+        <span id="warningDaysLabel">ภายใน 90 วัน</span>
+      </div>
+
+      <div class="side-note privacy">
+        <b>ข้อควรระวัง</b>
+        <span>GitHub Pages เป็นเว็บสาธารณะ ไม่ควรเผยแพร่ข้อมูลผู้ป่วย ข้อมูลส่วนบุคคล หรือข้อมูลลับของโรงพยาบาล</span>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="page-title">
+        <div>
+          <h2>ภาพรวมคลังสารเคมี</h2>
+          <p id="sourceStatus">กำลังเชื่อมต่อ Google Sheets…</p>
+        </div>
+        <div class="page-actions">
+          <button id="exportBtn" class="btn secondary" type="button">ส่งออก CSV ที่กรองแล้ว</button>
+        </div>
+      </section>
+
+      <section id="alertBanner" class="alert-banner" hidden></section>
+
+      <section class="kpi-grid" aria-label="ข้อมูลสรุป">
+        <article class="kpi-card">
+          <span class="kpi-icon">▦</span>
+          <div><b id="kpiTotal">0</b><span>รายการสารเคมี</span></div>
+        </article>
+        <article class="kpi-card">
+          <span class="kpi-icon">◉</span>
+          <div><b id="kpiUnique">0</b><span>ชนิดสารเคมีไม่ซ้ำ</span></div>
+        </article>
+        <article class="kpi-card">
+          <span class="kpi-icon">⌂</span>
+          <div><b id="kpiDepartments">0</b><span>หน่วยงานที่มีข้อมูล</span></div>
+        </article>
+        <article class="kpi-card warning">
+          <span class="kpi-icon">!</span>
+          <div><b id="kpiWarning">0</b><span>ใกล้หมดอายุ</span></div>
+        </article>
+        <article class="kpi-card danger">
+          <span class="kpi-icon">×</span>
+          <div><b id="kpiExpired">0</b><span>หมดอายุแล้ว</span></div>
+        </article>
+      </section>
+
+      <section class="chart-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div><h3>จำนวนรายการตามหน่วยงาน</h3><p>แสดง 10 อันดับแรก</p></div>
+          </div>
+          <div class="chart-box"><canvas id="departmentChart"></canvas></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div><h3>สถานะวันหมดอายุ</h3><p>คำนวณจากวันที่ปัจจุบันของอุปกรณ์</p></div>
+          </div>
+          <div class="chart-box"><canvas id="expiryChart"></canvas></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div><h3>สารเคมีที่มีจำนวนรายการสูงสุด</h3><p>แสดง 10 อันดับแรก</p></div>
+          </div>
+          <div class="chart-box"><canvas id="chemicalChart"></canvas></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div><h3>ความครบถ้วนของข้อมูลสำคัญ</h3><p>CAS, SDS, วันหมดอายุ และสถานที่จัดเก็บ</p></div>
+          </div>
+          <div class="chart-box"><canvas id="qualityChart"></canvas></div>
+        </article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-head table-heading">
+          <div>
+            <h3>ทะเบียนสารเคมี</h3>
+            <p><span id="resultCount">0</span> รายการหลังใช้ตัวกรอง</p>
+          </div>
+          <div class="legend">
+            <span><i class="dot active"></i>ยังไม่หมดอายุ</span>
+            <span><i class="dot warning"></i>ใกล้หมดอายุ</span>
+            <span><i class="dot expired"></i>หมดอายุ</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ลำดับ</th>
+                <th>หน่วยงาน</th>
+                <th>ชื่อสารเคมี</th>
+                <th>CAS No.</th>
+                <th>ปริมาณคงเหลือ</th>
+                <th>ประเภทอันตราย</th>
+                <th>สถานที่จัดเก็บ</th>
+                <th>วันหมดอายุ</th>
+                <th>สถานะ</th>
+                <th>SDS</th>
+              </tr>
+            </thead>
+            <tbody id="chemicalTableBody"></tbody>
+          </table>
+        </div>
+        <div id="pagination" class="pagination"></div>
+      </section>
+
+      <section class="panel mapping-panel">
+        <div class="panel-head">
+          <div>
+            <h3>สถานะการอ่านคอลัมน์จาก Google Sheet</h3>
+            <p>ระบบตรวจชื่อหัวตารางภาษาไทยและภาษาอังกฤษโดยอัตโนมัติ</p>
+          </div>
+        </div>
+        <div id="mappingGrid" class="mapping-grid"></div>
+      </section>
+
+      <footer>
+        <span>ระบบข้อมูลสารเคมีภายในโรงพยาบาลดอนตูม</span>
+        <span>•</span>
+        <span>ข้อมูลแสดงผลแบบอ่านอย่างเดียวจาก Google Sheets</span>
+      </footer>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
