@@ -74,6 +74,82 @@
     return `https://docs.google.com/spreadsheets/d/${encodeURIComponent(id)}/gviz/tq?tqx=out:csv&gid=${encodeURIComponent(gid)}&headers=1&_=${Date.now()}`;
   }
 
+  function loadSheetViaJsonp() {
+    return new Promise((resolve, reject) => {
+      const id = CONFIG.SHEET_ID;
+      const gid = CONFIG.SHEET_GID || "0";
+      const callbackName = `__dontumSheetCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+      const script = document.createElement("script");
+      const timeout = setTimeout(() => {
+        cleanup();
+        reject(new Error("หมดเวลารอข้อมูลจาก Google Sheets"));
+      }, 20000);
+
+      function cleanup() {
+        clearTimeout(timeout);
+        if (script.parentNode) script.parentNode.removeChild(script);
+        try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
+      }
+
+      window[callbackName] = (payload) => {
+        try {
+          if (!payload || payload.status === "error") {
+            const detail = payload?.errors?.[0]?.detailed_message ||
+              payload?.errors?.[0]?.message ||
+              "Google Sheets ไม่อนุญาตให้เข้าถึงข้อมูล";
+            throw new Error(detail);
+          }
+
+          const table = payload.table || {};
+          const rawHeaders = (table.cols || []).map((col, index) =>
+            text(col?.label || col?.id || `คอลัมน์ ${index + 1}`)
+          );
+          const headers = makeUniqueHeaders(rawHeaders);
+          const rows = (table.rows || []).map((row) => {
+            const obj = {};
+            headers.forEach((header, index) => {
+              const cell = row?.c?.[index];
+              obj[header] = text(cell?.f ?? cell?.v ?? "");
+            });
+            return obj;
+          }).filter(row => Object.values(row).some(Boolean));
+
+          cleanup();
+          resolve({ headers, rows, method: "JSONP" });
+        } catch (error) {
+          cleanup();
+          reject(error);
+        }
+      };
+
+      script.onerror = () => {
+        cleanup();
+        reject(new Error("โหลด Google Sheets ไม่สำเร็จ กรุณาตรวจสิทธิ์การแชร์และค่า gid"));
+      };
+
+      script.src =
+        `https://docs.google.com/spreadsheets/d/${encodeURIComponent(id)}/gviz/tq` +
+        `?gid=${encodeURIComponent(gid)}&headers=1` +
+        `&tqx=responseHandler:${encodeURIComponent(callbackName)}&_=${Date.now()}`;
+      document.head.appendChild(script);
+    });
+  }
+
+  async function fetchSheetData() {
+    try {
+      const response = await fetch(buildSheetUrl(), { cache: "no-store" });
+      if (!response.ok) throw new Error(`Google Sheets ตอบกลับ ${response.status}`);
+      const csv = await response.text();
+      if (/<!doctype html>|<html/i.test(csv)) {
+        throw new Error("Google Sheets ส่งหน้าล็อกอินกลับมา");
+      }
+      return { ...parseCsvSmart(csv), method: "CSV" };
+    } catch (csvError) {
+      console.warn("CSV fetch failed; trying JSONP fallback.", csvError);
+      return await loadSheetViaJsonp();
+    }
+  }
+
   function headerScore(row) {
     const cells = row.map(norm).filter(Boolean);
     if (!cells.length) return 0;
@@ -550,14 +626,7 @@
     if (showMessage) $("loadingScreen").classList.remove("hidden");
 
     try {
-      const response = await fetch(buildSheetUrl(), { cache: "no-store" });
-      if (!response.ok) throw new Error(`Google Sheets ตอบกลับ ${response.status}`);
-      const csv = await response.text();
-      if (/<!doctype html>|<html/i.test(csv)) {
-        throw new Error("ไม่สามารถเข้าถึงข้อมูลได้ กรุณาตั้งค่าแชร์เป็นผู้มีลิงก์สามารถดูได้");
-      }
-
-      const parsed = parseCsvSmart(csv);
+      const parsed = await fetchSheetData();
       state.headers = parsed.headers;
       state.rawRows = parsed.rows;
       state.mapping = detectMapping(parsed.headers);
@@ -574,7 +643,7 @@
         dateStyle: "short", timeStyle: "short"
       }).format(new Date());
       $("lastUpdated").textContent = now;
-      $("sourceStatus").textContent = `เชื่อมต่อ Google Sheets สำเร็จ • ${state.rows.length.toLocaleString("th-TH")} รายการ`;
+      $("sourceStatus").textContent = `เชื่อมต่อ Google Sheets สำเร็จ (${parsed.method || "อัตโนมัติ"}) • ${state.rows.length.toLocaleString("th-TH")} รายการ`;
       if (showMessage) showToast("โหลดข้อมูลจาก Google Sheets สำเร็จ");
     } catch (error) {
       console.error(error);
