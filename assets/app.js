@@ -118,9 +118,14 @@
 
   function imageForRow(row) {
     const imageId = IMAGE_MAP[row.id];
-    if (!imageId) return null;
+    const expectedCode = imageId ? `SDS-CHEM-${imageId}` : "";
+
+    // แสดงภาพเฉพาะเมื่อ Chemical ID, SDS Code และเลขภาพตรงกัน
+    if (!imageId || row.sdsCode !== expectedCode) return null;
+
     return {
       id: imageId,
+      sdsCode: expectedCode,
       path: `assets/chemical-images/chemical-${imageId}.webp`
     };
   }
