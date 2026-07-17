@@ -11,6 +11,8 @@
   };
 
   const $ = id => document.getElementById(id);
+  const mobileMedia = window.matchMedia("(max-width: 760px)");
+  const isMobileView = () => mobileMedia.matches;
   const text = value => String(value ?? "").trim();
   const normalize = value => text(value).toLowerCase().replace(/\s+/g, " ");
 
@@ -283,22 +285,27 @@
     const grid = $("chemicalCardGrid");
     const query = text($("searchInput").value);
     const department = $("departmentFilter").value;
+    const mobile = isMobileView();
     const shouldShow =
-      !state.galleryHidden && Boolean(query || department);
+      !state.galleryHidden && (mobile || Boolean(query || department));
 
     panel.hidden = !shouldShow;
     if (!shouldShow) return;
 
     grid.innerHTML = "";
-    const rows = state.filtered.slice(0, 48);
+    const rows = mobile
+      ? state.filtered
+      : state.filtered.slice(0, 48);
 
     $("galleryTitle").textContent = department
       ? `สารเคมีของหน่วยงาน ${department}`
-      : `ผลการค้นหา “${query}”`;
+      : query
+        ? `ผลการค้นหา “${query}”`
+        : "รายการสารเคมีทั้งหมด";
 
     $("gallerySummary").textContent =
       `พบ ${state.filtered.length.toLocaleString("th-TH")} รายการ` +
-      (state.filtered.length > 48 ? " • แสดง 48 รายการแรก" : "");
+      (!mobile && state.filtered.length > 48 ? " • แสดง 48 รายการแรก" : "");
 
     if (!rows.length) {
       const empty = document.createElement("div");
@@ -663,6 +670,19 @@
     if (showMessage) showToast("โหลดข้อมูลล่าสุดแล้ว");
   }
 
+  function openMobileFilters() {
+    if (!isMobileView()) return;
+    document.body.classList.add("filter-open");
+    const button = $("mobileFilterBtn");
+    if (button) button.setAttribute("aria-expanded", "true");
+  }
+
+  function closeMobileFilters() {
+    document.body.classList.remove("filter-open");
+    const button = $("mobileFilterBtn");
+    if (button) button.setAttribute("aria-expanded", "false");
+  }
+
   function render() {
     updateKpis(state.filtered);
     renderCharts(state.filtered);
@@ -680,9 +700,32 @@
       $(id).addEventListener("change", () => applyFilters());
     });
 
-    $("clearFilters").addEventListener("click", clearFilters);
+    $("clearFilters").addEventListener("click", () => {
+      clearFilters();
+      if (isMobileView()) closeMobileFilters();
+    });
     $("exportFiltered").addEventListener("click", exportCsv);
     $("refreshBtn").addEventListener("click", () => load(true));
+
+    const mobileFilterButton = $("mobileFilterBtn");
+    const closeFilterButton = $("closeMobileFilters");
+    const filterBackdrop = $("filterBackdrop");
+
+    if (mobileFilterButton) {
+      mobileFilterButton.addEventListener("click", openMobileFilters);
+    }
+    if (closeFilterButton) {
+      closeFilterButton.addEventListener("click", closeMobileFilters);
+    }
+    if (filterBackdrop) {
+      filterBackdrop.addEventListener("click", closeMobileFilters);
+    }
+
+    mobileMedia.addEventListener("change", () => {
+      closeMobileFilters();
+      state.galleryHidden = false;
+      renderGallery();
+    });
 
     $("closeGallery").addEventListener("click", () => {
       state.galleryHidden = true;
@@ -695,7 +738,10 @@
     });
 
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeModal();
+      if (event.key === "Escape") {
+        closeModal();
+        closeMobileFilters();
+      }
     });
 
     load(false);

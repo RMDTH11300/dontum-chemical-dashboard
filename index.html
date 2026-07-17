@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#12384c">
   <title>Quick Reference สารเคมี | โรงพยาบาลดอนตูม</title>
-  <link rel="stylesheet" href="assets/style.css?v=12">
+  <link rel="stylesheet" href="assets/style.css?v=14">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-  <script src="assets/config.js?v=12"></script>
-  <script src="data/chemicals.js?v=12"></script>
-  <script src="assets/app.js?v=12" defer></script>
+  <script src="assets/config.js?v=14"></script>
+  <script src="data/chemicals.js?v=14"></script>
+  <script src="assets/app.js?v=14" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -22,16 +22,24 @@
       </div>
     </div>
     <div class="header-actions">
+      <button id="mobileFilterBtn" class="btn light mobile-filter-button"
+        type="button" aria-controls="sidebarFilters" aria-expanded="false">
+        ตัวกรอง
+      </button>
       <a class="btn light nav-button" href="about.html">เกี่ยวกับระบบ</a>
       <button id="refreshBtn" class="btn light" type="button">↻ รีเฟรชข้อมูล</button>
     </div>
   </header>
 
   <div class="layout">
-    <aside class="sidebar">
+    <aside id="sidebarFilters" class="sidebar" aria-label="ตัวกรองข้อมูล">
       <div class="sidebar-head">
         <strong>ตัวกรองข้อมูล</strong>
-        <button id="clearFilters" class="text-button" type="button">ล้างทั้งหมด</button>
+        <div class="sidebar-head-actions">
+          <button id="clearFilters" class="text-button" type="button">ล้างทั้งหมด</button>
+          <button id="closeMobileFilters" class="mobile-close-button"
+            type="button" aria-label="ปิดตัวกรอง">×</button>
+        </div>
       </div>
 
       <label class="field">
@@ -83,6 +91,8 @@
         <span>สารไม่ทราบชนิด ปริมาณมาก มีไอพิษ ไฟไหม้ ผู้บาดเจ็บ หรือเกินขีดความสามารถของหน่วยงาน ห้ามเก็บกู้เอง</span>
       </div>
     </aside>
+    <button id="filterBackdrop" class="filter-backdrop" type="button"
+      aria-label="ปิดตัวกรอง" tabindex="-1"></button>
 
     <main class="content">
       <section class="page-title">
