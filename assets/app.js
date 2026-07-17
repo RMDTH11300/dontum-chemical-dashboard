@@ -1,310 +1,33 @@
 (() => {
   "use strict";
-
-  const DATA = Array.isArray(window.CHEMICAL_DATA) ? window.CHEMICAL_DATA : [];
+  const CONFIG = window.CHEMICAL_APP_CONFIG || {};
+  const FALLBACK = Array.isArray(window.CHEMICAL_DATA) ? window.CHEMICAL_DATA : [];
   const SOURCE = window.CHEMICAL_SOURCE_SUMMARY || {};
-  const PAGE_SIZE = 25;
-  const state = { filtered: [...DATA], page: 1, charts: {} };
+  const state = { rows: [], filtered: [], page: 1, charts: {}, source: "embedded" };
   const $ = id => document.getElementById(id);
-  const text = value => String(value ?? "").trim();
-  const normalize = value => text(value).toLowerCase().replace(/\s+/g, " ");
+  const text = v => String(v ?? "").trim();
+  const normalize = v => text(v).toLowerCase().replace(/\s+/g, " ");
+  const apiReady = () => Boolean(CONFIG.API_ENABLED && /^https:\/\/script\.google\.com\//.test(text(CONFIG.API_URL)));
 
-  function uniqueSorted(values) {
-    return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, "th"));
-  }
-
-  function fillSelect(id, values, label) {
-    const select = $(id);
-    select.innerHTML = `<option value="">${label}</option>`;
-    values.forEach(value => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.textContent = value;
-      select.appendChild(option);
-    });
-  }
-
-  function setupFilters() {
-    fillSelect("departmentFilter", uniqueSorted(DATA.map(r => r.department)), "ทุกหน่วยงาน");
-    fillSelect("hazardFilter", uniqueSorted(DATA.flatMap(r => r.hazards || [])), "ทุกประเภท");
-    fillSelect("ppeFilter", uniqueSorted(DATA.flatMap(r => r.ppe || [])), "ทุกประเภท");
-  }
-
-  function matchesCompleteness(row, type) {
-    if (!type) return true;
-    if (type === "complete") return Boolean(row.storage && row.use);
-    if (type === "missing-storage") return !row.storage;
-    if (type === "missing-use") return !row.use;
-    if (type === "missing-ppe") return !(row.ppe || []).length;
-    return true;
-  }
-
-  function applyFilters() {
-    const query = normalize($("searchInput").value);
-    const department = $("departmentFilter").value;
-    const hazard = $("hazardFilter").value;
-    const ppe = $("ppeFilter").value;
-    const completeness = $("completenessFilter").value;
-
-    state.filtered = DATA.filter(row => {
-      const blob = normalize([
-        row.department, row.code, row.chemicalName, row.tradeName,
-        row.quantity, row.storage, row.use,
-        ...(row.hazards || []), ...(row.ppe || [])
-      ].join(" "));
-      return (!query || blob.includes(query))
-        && (!department || row.department === department)
-        && (!hazard || (row.hazards || []).includes(hazard))
-        && (!ppe || (row.ppe || []).includes(ppe))
-        && matchesCompleteness(row, completeness);
-    });
-    state.page = 1;
-    render();
-  }
-
-  function clearFilters() {
-    $("searchInput").value = "";
-    $("departmentFilter").value = "";
-    $("hazardFilter").value = "";
-    $("ppeFilter").value = "";
-    $("completenessFilter").value = "";
-    state.filtered = [...DATA];
-    state.page = 1;
-    render();
-  }
-
-  function countBy(values) {
-    const counts = new Map();
-    values.forEach(value => {
-      if (!value) return;
-      counts.set(value, (counts.get(value) || 0) + 1);
-    });
-    return [...counts.entries()].sort((a, b) => b[1] - a[1]);
-  }
-
-  function updateKpis(rows) {
-    $("kpiRecords").textContent = rows.length.toLocaleString("th-TH");
-    $("kpiUnique").textContent = new Set(rows.map(r => normalize(r.chemicalName)).filter(Boolean)).size.toLocaleString("th-TH");
-    $("kpiDepartments").textContent = new Set(rows.map(r => r.department).filter(Boolean)).size.toLocaleString("th-TH");
-    $("kpiHazard").textContent = rows.filter(r => (r.hazards || []).length).length.toLocaleString("th-TH");
-    $("kpiPpe").textContent = rows.filter(r => (r.ppe || []).length).length.toLocaleString("th-TH");
-    $("resultCount").textContent = rows.length.toLocaleString("th-TH");
-  }
-
-  function chartAvailable() {
-    return typeof Chart !== "undefined";
-  }
-
-  function makeChart(id, type, labels, values, label, horizontal = false) {
-    if (!chartAvailable()) return;
-    if (state.charts[id]) state.charts[id].destroy();
-    state.charts[id] = new Chart($(id), {
-      type,
-      data: { labels, datasets: [{ label, data: values, borderWidth: 1.5 }] },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        indexAxis: horizontal ? "y" : "x",
-        plugins: { legend: { display: type === "doughnut", position: "bottom" } },
-        scales: type === "doughnut" ? {} : {
-          x: { beginAtZero: true, ticks: { precision: 0 } },
-          y: { beginAtZero: true, ticks: { precision: 0 } }
-        }
-      }
-    });
-  }
-
-  function renderCharts(rows) {
-    const departments = countBy(rows.map(r => r.department));
-    makeChart("departmentChart", "bar", departments.map(x => x[0]), departments.map(x => x[1]), "จำนวนรายการ", true);
-
-    const hazards = countBy(rows.flatMap(r => r.hazards || []));
-    makeChart("hazardChart", "bar", hazards.map(x => x[0]), hazards.map(x => x[1]), "จำนวนรายการ", true);
-
-    const ppe = countBy(rows.flatMap(r => r.ppe || []));
-    makeChart("ppeChart", "bar", ppe.map(x => x[0]), ppe.map(x => x[1]), "จำนวนรายการ");
-
-    const total = rows.length || 1;
-    const quality = [
-      ["มีรหัสสารเคมี", rows.filter(r => r.code).length],
-      ["มีปริมาณ", rows.filter(r => r.quantity).length],
-      ["มีสถานที่เก็บ", rows.filter(r => r.storage).length],
-      ["มีการใช้ประโยชน์", rows.filter(r => r.use).length],
-      ["มีข้อมูล PPE", rows.filter(r => (r.ppe || []).length).length]
-    ];
-    makeChart(
-      "qualityChart",
-      "bar",
-      quality.map(x => x[0]),
-      quality.map(x => Math.round((x[1] / total) * 100)),
-      "ร้อยละความครบถ้วน"
-    );
-  }
-
-  function badgeList(items, kind) {
-    const wrap = document.createElement("div");
-    wrap.className = "badge-list";
-    if (!items || !items.length) {
-      const badge = document.createElement("span");
-      badge.className = "badge none";
-      badge.textContent = "ไม่ระบุ";
-      wrap.appendChild(badge);
-      return wrap;
-    }
-    items.forEach(item => {
-      const badge = document.createElement("span");
-      badge.className = `badge ${kind}`;
-      badge.textContent = item;
-      wrap.appendChild(badge);
-    });
-    return wrap;
-  }
-
-  function makeCell(value, className = "") {
-    const td = document.createElement("td");
-    td.textContent = value || "–";
-    if (className) td.className = className;
-    return td;
-  }
-
-  function renderTable(rows) {
-    const tbody = $("tableBody");
-    tbody.innerHTML = "";
-    if (!rows.length) {
-      const tr = document.createElement("tr");
-      const td = document.createElement("td");
-      td.colSpan = 9;
-      td.className = "empty";
-      td.textContent = "ไม่พบข้อมูลตามเงื่อนไขที่เลือก";
-      tr.appendChild(td);
-      tbody.appendChild(tr);
-      $("pagination").innerHTML = "";
-      return;
-    }
-
-    const pageCount = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
-    state.page = Math.min(state.page, pageCount);
-    const start = (state.page - 1) * PAGE_SIZE;
-
-    rows.slice(start, start + PAGE_SIZE).forEach((row, index) => {
-      const tr = document.createElement("tr");
-      tr.appendChild(makeCell(String(start + index + 1)));
-      tr.appendChild(makeCell(row.department));
-      tr.appendChild(makeCell(row.code));
-
-      const nameCell = document.createElement("td");
-      nameCell.className = "name-cell";
-      const name = document.createElement("b");
-      name.textContent = row.chemicalName || "ไม่ระบุชื่อ";
-      nameCell.appendChild(name);
-      if (row.tradeName) {
-        const trade = document.createElement("span");
-        trade.textContent = row.tradeName;
-        nameCell.appendChild(trade);
-      }
-      tr.appendChild(nameCell);
-
-      tr.appendChild(makeCell(row.quantity));
-      tr.appendChild(makeCell(row.storage, "detail-cell"));
-      tr.appendChild(makeCell(row.use, "detail-cell"));
-
-      const hazardCell = document.createElement("td");
-      hazardCell.appendChild(badgeList(row.hazards, "hazard"));
-      tr.appendChild(hazardCell);
-
-      const ppeCell = document.createElement("td");
-      ppeCell.appendChild(badgeList(row.ppe, "ppe"));
-      tr.appendChild(ppeCell);
-
-      tbody.appendChild(tr);
-    });
-
-    renderPagination(pageCount);
-  }
-
-  function renderPagination(pageCount) {
-    const wrap = $("pagination");
-    wrap.innerHTML = "";
-    if (pageCount <= 1) return;
-
-    const addButton = (label, page, disabled = false, active = false) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = `page-btn${active ? " active" : ""}`;
-      button.textContent = label;
-      button.disabled = disabled;
-      button.addEventListener("click", () => {
-        state.page = page;
-        renderTable(state.filtered);
-        document.querySelector(".table-panel").scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-      wrap.appendChild(button);
-    };
-
-    addButton("‹", Math.max(1, state.page - 1), state.page === 1);
-    const first = Math.max(1, Math.min(state.page - 2, pageCount - 4));
-    const last = Math.min(pageCount, first + 4);
-    for (let page = first; page <= last; page++) {
-      addButton(String(page), page, false, page === state.page);
-    }
-    addButton("›", Math.min(pageCount, state.page + 1), state.page === pageCount);
-  }
-
-  function escapeCsv(value) {
-    const string = String(value ?? "");
-    return /[",\n]/.test(string) ? `"${string.replace(/"/g, '""')}"` : string;
-  }
-
-  function exportFiltered() {
-    const headers = [
-      "หน่วยงาน", "รหัสสารเคมี", "ชื่อสารเคมี", "Trade Name",
-      "ปริมาณ", "สถานที่เก็บ", "การใช้ประโยชน์", "ความเป็นอันตราย", "PPE"
-    ];
-    const rows = state.filtered.map(row => [
-      row.department, row.code, row.chemicalName, row.tradeName,
-      row.quantity, row.storage, row.use,
-      (row.hazards || []).join(" | "), (row.ppe || []).join(" | ")
-    ]);
-    const csv = "\ufeff" + [headers, ...rows].map(row => row.map(escapeCsv).join(",")).join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "dontum-chemical-filtered.csv";
-    link.click();
-    URL.revokeObjectURL(url);
-    showToast("ส่งออกข้อมูลที่กรองแล้วเรียบร้อย");
-  }
-
-  function showToast(message) {
-    const toast = $("toast");
-    toast.textContent = message;
-    toast.classList.add("show");
-    clearTimeout(showToast.timer);
-    showToast.timer = setTimeout(() => toast.classList.remove("show"), 2600);
-  }
-
-  function render() {
-    updateKpis(state.filtered);
-    renderCharts(state.filtered);
-    renderTable(state.filtered);
-  }
-
-  function init() {
-    setupFilters();
-    $("sourceSummary").textContent =
-      `ข้อมูล ${Number(SOURCE.recordCount || DATA.length).toLocaleString("th-TH")} รายการ • ` +
-      `${Number(SOURCE.departmentCount || 0).toLocaleString("th-TH")} หน่วยงาน • ` +
-      `${Number(SOURCE.uniqueChemicalCount || 0).toLocaleString("th-TH")} ชื่อสารเคมีไม่ซ้ำ`;
-
-    $("searchInput").addEventListener("input", applyFilters);
-    ["departmentFilter", "hazardFilter", "ppeFilter", "completenessFilter"]
-      .forEach(id => $(id).addEventListener("change", applyFilters));
-    $("clearFilters").addEventListener("click", clearFilters);
-    $("exportFiltered").addEventListener("click", exportFiltered);
-
-    render();
-  }
-
-  document.addEventListener("DOMContentLoaded", init);
+  function showToast(message){const e=$("toast");e.textContent=message;e.classList.add("show");clearTimeout(showToast.t);showToast.t=setTimeout(()=>e.classList.remove("show"),2600)}
+  function unique(values){return [...new Set(values.filter(Boolean))].sort((a,b)=>a.localeCompare(b,"th"))}
+  function fill(id, values, label){const s=$(id);const current=s.value;s.innerHTML=`<option value="">${label}</option>`;values.forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;s.appendChild(o)});if([...s.options].some(o=>o.value===current))s.value=current}
+  function setupFilters(){fill("departmentFilter",unique(state.rows.map(r=>r.department)),"ทุกหน่วยงาน");fill("hazardFilter",unique(state.rows.flatMap(r=>r.hazards||[])),"ทุกประเภท");fill("ppeFilter",unique(state.rows.flatMap(r=>r.ppe||[])),"ทุกประเภท")}
+  function completeness(row,t){if(!t)return true;if(t==="complete")return Boolean(row.storage&&row.use);if(t==="missing-storage")return !row.storage;if(t==="missing-use")return !row.use;if(t==="missing-ppe")return !(row.ppe||[]).length;return true}
+  function applyFilters(){const q=normalize($("searchInput").value),d=$("departmentFilter").value,h=$("hazardFilter").value,p=$("ppeFilter").value,c=$("completenessFilter").value;state.filtered=state.rows.filter(r=>{const blob=normalize([r.department,r.code,r.chemicalName,r.tradeName,r.quantity,r.storage,r.use,...(r.hazards||[]),...(r.ppe||[])].join(" "));return(!q||blob.includes(q))&&(!d||r.department===d)&&(!h||(r.hazards||[]).includes(h))&&(!p||(r.ppe||[]).includes(p))&&completeness(r,c)});state.page=1;render()}
+  function clearFilters(){["searchInput","departmentFilter","hazardFilter","ppeFilter","completenessFilter"].forEach(id=>$(id).value="");state.filtered=[...state.rows];state.page=1;render()}
+  function countBy(values){const m=new Map();values.forEach(v=>{if(v)m.set(v,(m.get(v)||0)+1)});return [...m.entries()].sort((a,b)=>b[1]-a[1])}
+  function kpis(rows){$("kpiRecords").textContent=rows.length.toLocaleString("th-TH");$("kpiUnique").textContent=new Set(rows.map(r=>normalize(r.chemicalName)).filter(Boolean)).size.toLocaleString("th-TH");$("kpiDepartments").textContent=new Set(rows.map(r=>r.department).filter(Boolean)).size.toLocaleString("th-TH");$("kpiHazard").textContent=rows.filter(r=>(r.hazards||[]).length).length.toLocaleString("th-TH");$("kpiPpe").textContent=rows.filter(r=>(r.ppe||[]).length).length.toLocaleString("th-TH");$("resultCount").textContent=rows.length.toLocaleString("th-TH")}
+  function chart(id,type,labels,values,label,horizontal=false){if(typeof Chart==="undefined")return;if(state.charts[id])state.charts[id].destroy();state.charts[id]=new Chart($(id),{type,data:{labels,datasets:[{label,data:values,borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:horizontal?"y":"x",plugins:{legend:{display:type==="doughnut",position:"bottom"}},scales:type==="doughnut"?{}:{x:{beginAtZero:true,ticks:{precision:0}},y:{beginAtZero:true,ticks:{precision:0}}}}})}
+  function charts(rows){let a=countBy(rows.map(r=>r.department));chart("departmentChart","bar",a.map(x=>x[0]),a.map(x=>x[1]),"จำนวนรายการ",true);a=countBy(rows.flatMap(r=>r.hazards||[]));chart("hazardChart","bar",a.map(x=>x[0]),a.map(x=>x[1]),"จำนวนรายการ",true);a=countBy(rows.flatMap(r=>r.ppe||[]));chart("ppeChart","bar",a.map(x=>x[0]),a.map(x=>x[1]),"จำนวนรายการ");const total=rows.length||1;const q=[["มีรหัส",rows.filter(r=>r.code).length],["มีปริมาณ",rows.filter(r=>r.quantity).length],["มีสถานที่เก็บ",rows.filter(r=>r.storage).length],["มีการใช้ประโยชน์",rows.filter(r=>r.use).length],["มี PPE",rows.filter(r=>(r.ppe||[]).length).length]];chart("qualityChart","bar",q.map(x=>x[0]),q.map(x=>Math.round(x[1]/total*100)),"ร้อยละ")}
+  function cell(v,cls=""){const td=document.createElement("td");td.textContent=v||"–";if(cls)td.className=cls;return td}
+  function badges(items,kind){const w=document.createElement("div");w.className="badge-list";if(!items||!items.length){const b=document.createElement("span");b.className="badge none";b.textContent="ไม่ระบุ";w.appendChild(b);return w}items.forEach(v=>{const b=document.createElement("span");b.className=`badge ${kind}`;b.textContent=v;w.appendChild(b)});return w}
+  function renderTable(rows){const body=$("tableBody");body.innerHTML="";if(!rows.length){const tr=document.createElement("tr"),td=document.createElement("td");td.colSpan=9;td.className="empty";td.textContent="ไม่พบข้อมูลตามเงื่อนไขที่เลือก";tr.appendChild(td);body.appendChild(tr);$("pagination").innerHTML="";return}const size=Number(CONFIG.PAGE_SIZE||25),pages=Math.max(1,Math.ceil(rows.length/size));state.page=Math.min(state.page,pages);const start=(state.page-1)*size;rows.slice(start,start+size).forEach((r,i)=>{const tr=document.createElement("tr");tr.appendChild(cell(String(start+i+1)));tr.appendChild(cell(r.department));tr.appendChild(cell(r.code));const n=document.createElement("td");n.className="name-cell";const b=document.createElement("b");b.textContent=r.chemicalName||"ไม่ระบุชื่อ";n.appendChild(b);if(r.tradeName){const s=document.createElement("span");s.textContent=r.tradeName;n.appendChild(s)}tr.appendChild(n);tr.appendChild(cell(r.quantity));tr.appendChild(cell(r.storage,"detail-cell"));tr.appendChild(cell(r.use,"detail-cell"));const h=document.createElement("td");h.appendChild(badges(r.hazards,"hazard"));tr.appendChild(h);const p=document.createElement("td");p.appendChild(badges(r.ppe,"ppe"));tr.appendChild(p);body.appendChild(tr)});pagination(pages)}
+  function pagination(pages){const w=$("pagination");w.innerHTML="";if(pages<=1)return;const add=(label,page,disabled=false,active=false)=>{const b=document.createElement("button");b.type="button";b.className=`page-btn${active?" active":""}`;b.textContent=label;b.disabled=disabled;b.onclick=()=>{state.page=page;renderTable(state.filtered);document.querySelector(".table-panel").scrollIntoView({behavior:"smooth",block:"start"})};w.appendChild(b)};add("‹",Math.max(1,state.page-1),state.page===1);const first=Math.max(1,Math.min(state.page-2,pages-4)),last=Math.min(pages,first+4);for(let p=first;p<=last;p++)add(String(p),p,false,p===state.page);add("›",Math.min(pages,state.page+1),state.page===pages)}
+  function escapeCsv(v){const s=String(v??"");return /[",\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s}
+  function exportCsv(){const head=["หน่วยงาน","รหัสสารเคมี","ชื่อสารเคมี","Trade Name","ปริมาณ","สถานที่เก็บ","การใช้ประโยชน์","ความเป็นอันตราย","PPE"];const rows=state.filtered.map(r=>[r.department,r.code,r.chemicalName,r.tradeName,r.quantity,r.storage,r.use,(r.hazards||[]).join(" | "),(r.ppe||[]).join(" | ")]);const blob=new Blob(["\ufeff"+[head,...rows].map(r=>r.map(escapeCsv).join(",")).join("\n")],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="dontum-chemical-filtered.csv";a.click();URL.revokeObjectURL(url)}
+  async function fetchApi(){const res=await fetch(`${CONFIG.API_URL}?action=list&_=${Date.now()}`,{cache:"no-store"});if(!res.ok)throw new Error(`API ${res.status}`);const data=await res.json();if(!data.success||!Array.isArray(data.rows))throw new Error(data.message||"รูปแบบข้อมูลไม่ถูกต้อง");return data.rows}
+  async function load(show=true){const banner=$("statusBanner");try{let rows;if(apiReady()){rows=await fetchApi();state.source="api";$("dataSourceNote").innerHTML="<b>แหล่งข้อมูล</b><span>Google Apps Script / Google Sheet</span>";banner.hidden=true}else{rows=FALLBACK;state.source="embedded";$("dataSourceNote").innerHTML="<b>แหล่งข้อมูล</b><span>ข้อมูลตั้งต้นจากไฟล์ Excel</span>";banner.className="status-banner warning";banner.hidden=false;banner.textContent="ยังไม่ได้เชื่อม Google Apps Script จึงกำลังแสดงข้อมูลตั้งต้นจากไฟล์ Excel";}state.rows=rows.map(r=>({...r,hazards:Array.isArray(r.hazards)?r.hazards:[],ppe:Array.isArray(r.ppe)?r.ppe:[]}));state.filtered=[...state.rows];state.page=1;setupFilters();render();$("sourceSummary").textContent=`ข้อมูล ${state.rows.length.toLocaleString("th-TH")} รายการ • ${new Set(state.rows.map(r=>r.department)).size.toLocaleString("th-TH")} หน่วยงาน • ${new Set(state.rows.map(r=>normalize(r.chemicalName))).size.toLocaleString("th-TH")} ชื่อสารเคมีไม่ซ้ำ`;if(show)showToast("โหลดข้อมูลล่าสุดแล้ว")}catch(err){console.error(err);state.rows=FALLBACK;state.filtered=[...FALLBACK];setupFilters();render();banner.className="status-banner danger";banner.hidden=false;banner.textContent=`เชื่อมต่อฐานข้อมูลไม่สำเร็จ กำลังแสดงข้อมูลสำรอง: ${err.message}`;$("dataSourceNote").innerHTML="<b>แหล่งข้อมูล</b><span>ข้อมูลสำรองจากไฟล์ Excel</span>"}}
+  function render(){kpis(state.filtered);charts(state.filtered);renderTable(state.filtered)}
+  document.addEventListener("DOMContentLoaded",()=>{$("searchInput").oninput=applyFilters;["departmentFilter","hazardFilter","ppeFilter","completenessFilter"].forEach(id=>$(id).onchange=applyFilters);$("clearFilters").onclick=clearFilters;$("exportFiltered").onclick=exportCsv;$("refreshBtn").onclick=()=>load(true);load(false)})
 })();

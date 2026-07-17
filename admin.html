@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12384c">
+  <title>Admin สารเคมี | โรงพยาบาลดอนตูม</title>
+  <link rel="stylesheet" href="assets/style.css?v=4">
+  <script src="assets/config.js?v=4"></script>
+  <script src="data/chemicals.js?v=4"></script>
+  <script src="assets/admin.js?v=4" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">AD</div><div><span class="eyebrow">DON TUM CHEMICAL ADMIN</span><h1>จัดการข้อมูลสารเคมี</h1><p>โรงพยาบาลดอนตูม จังหวัดนครปฐม</p></div></div>
+    <div class="header-actions"><a class="btn light" href="index.html">กลับหน้า Dashboard</a><button id="logoutBtn" class="btn light" type="button" hidden>ออกจากระบบ</button></div>
+  </header>
+
+  <main class="admin-shell">
+    <section id="setupWarning" class="status-banner warning" hidden></section>
+
+    <section id="loginCard" class="login-card">
+      <h2>เข้าสู่ระบบผู้ดูแล</h2>
+      <p>กรอกรหัสผ่าน Admin ที่ตั้งไว้ใน Script Properties ของ Google Apps Script รหัสผ่านจะเก็บไว้เฉพาะในแท็บเบราว์เซอร์นี้</p>
+      <div class="login-row"><input id="passwordInput" type="password" placeholder="รหัสผ่าน Admin" autocomplete="current-password"><button id="loginBtn" class="btn primary" type="button">เข้าสู่ระบบ</button></div>
+    </section>
+
+    <section id="adminArea" hidden>
+      <div class="admin-toolbar">
+        <div><h2>ทะเบียนสารเคมี</h2><p id="adminSummary">กำลังโหลดข้อมูล…</p></div>
+        <div class="admin-controls"><button id="seedBtn" class="btn outline" type="button">นำเข้าข้อมูลตั้งต้น 96 รายการ</button><button id="replaceBtn" class="btn danger" type="button">แทนที่ข้อมูลทั้งหมดด้วยไฟล์ใหม่ 96 รายการ</button><button id="addBtn" class="btn primary" type="button">+ เพิ่มข้อมูลสารเคมี</button></div>
+      </div>
+      <div id="adminStatus" class="status-banner" hidden></div>
+      <div class="admin-filterbar"><input id="adminSearch" type="search" placeholder="ค้นหาชื่อสารเคมี รหัส หรือหน่วยงาน"><select id="adminDepartment"><option value="">ทุกหน่วยงาน</option></select></div>
+      <section class="panel table-panel">
+        <div class="table-wrap"><table><thead><tr><th>ลำดับ</th><th>หน่วยงาน</th><th>ลำดับ/รหัส</th><th>ชื่อสารเคมี / ชื่อการค้า</th><th>ปริมาณ</th><th>สถานที่เก็บ</th><th>การใช้ประโยชน์</th><th>จัดการ</th></tr></thead><tbody id="adminTableBody"></tbody></table></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="recordModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head"><h3 id="modalTitle">เพิ่มข้อมูลสารเคมี</h3><button id="closeModal" class="close-button" type="button">×</button></div>
+      <form id="recordForm" class="form-body">
+        <input id="recordId" type="hidden">
+        <div class="form-grid">
+          <label class="field"><span>หน่วยงาน *</span><input id="department" list="departmentList" required></label>
+          <label class="field"><span>ลำดับ/รหัสรายการ</span><input id="code"></label>
+          <label class="field"><span>ชื่อสารเคมี *</span><input id="chemicalName" required></label>
+          <label class="field"><span>ชื่อการค้า</span><input id="tradeName"></label>
+          <label class="field"><span>ปริมาณที่มีเก็บไว้</span><input id="quantity"></label>
+          <label class="field"><span>สถานที่เก็บ</span><input id="storage"></label>
+          <label class="field span-2"><span>การใช้ประโยชน์</span><textarea id="use"></textarea></label>
+          <div class="check-section span-2"><strong>ความเป็นอันตราย</strong><div id="hazardChecks" class="check-grid"></div></div>
+          <div class="check-section span-2"><strong>อุปกรณ์ป้องกันอันตรายส่วนบุคคล</strong><div id="ppeChecks" class="check-grid"></div></div>
+        </div>
+        <div class="form-actions"><button id="cancelModal" class="btn outline" type="button">ยกเลิก</button><button id="saveBtn" class="btn primary" type="submit">บันทึกข้อมูล</button></div>
+      </form>
+    </div>
+  </div>
+
+  <datalist id="departmentList"></datalist>
+  <div id="toast" class="toast"></div>
+</body>
+</html>
