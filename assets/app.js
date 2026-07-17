@@ -36,11 +36,6 @@
     .replace(/\s+/g, " ")
     .trim();
 
-  const apiReady = () => Boolean(
-    CONFIG.API_ENABLED &&
-    /^https:\/\/script\.google\.com\//.test(text(CONFIG.API_URL))
-  );
-
   function showToast(message) {
     const element = $("toast");
     element.textContent = message;
@@ -336,35 +331,13 @@
     rows.forEach(row => {
       const image = imageForRow(row);
       const card = document.createElement("article");
-      card.className = "chemical-card";
-
-      const imageButton = document.createElement("button");
-      imageButton.type = "button";
-      imageButton.className = "chemical-card-image";
-      imageButton.setAttribute("aria-label", `ดูรายละเอียด ${row.chemicalName}`);
-
-      if (image) {
-        const img = document.createElement("img");
-        img.src = image.image;
-        img.alt = `SDS ${image.title}`;
-        img.loading = "lazy";
-        imageButton.appendChild(img);
-
-        const status = document.createElement("span");
-        status.className = "image-status";
-        status.textContent = image.sdsCode;
-        imageButton.appendChild(status);
-      } else {
-        const placeholder = document.createElement("div");
-        placeholder.className = "image-placeholder";
-        placeholder.innerHTML =
-          `<strong>CH</strong><span>ยังไม่มีภาพ SDS<br>ที่จับคู่ตรงกับรายการนี้</span>`;
-        imageButton.appendChild(placeholder);
-      }
-      imageButton.addEventListener("click", () => openRowDetail(row, image));
+      card.className = "chemical-card chemical-card-no-thumbnail";
 
       const body = document.createElement("div");
       body.className = "chemical-card-body";
+
+      const topLine = document.createElement("div");
+      topLine.className = "card-top-line";
 
       const dept = document.createElement("button");
       dept.type = "button";
@@ -375,15 +348,24 @@
         applyFilters({ scrollGallery: true });
       });
 
+      const imageAvailability = document.createElement("span");
+      imageAvailability.className =
+        `image-availability ${image ? "available" : "unavailable"}`;
+      imageAvailability.textContent = image ? "มีภาพ SDS" : "ยังไม่มีภาพ";
+
+      topLine.append(dept, imageAvailability);
+
       const heading = document.createElement("h4");
       const titleButton = document.createElement("button");
       titleButton.type = "button";
       titleButton.className = "chemical-card-title";
       titleButton.textContent = row.chemicalName || "ไม่ระบุชื่อ";
-      titleButton.addEventListener("click", () => openRowDetail(row, image));
+      titleButton.addEventListener("click", () =>
+        openRowDetail(row, image, false)
+      );
       heading.appendChild(titleButton);
 
-      body.append(dept, heading);
+      body.append(topLine, heading);
 
       if (row.tradeName) {
         const trade = document.createElement("div");
@@ -411,15 +393,30 @@
 
       const actions = document.createElement("div");
       actions.className = "card-actions";
+
       const detailButton = document.createElement("button");
       detailButton.type = "button";
-      detailButton.className = "btn primary small";
-      detailButton.textContent = image ? "ดูภาพและรายละเอียด" : "ดูรายละเอียด";
-      detailButton.addEventListener("click", () => openRowDetail(row, image));
+      detailButton.className = "btn outline small";
+      detailButton.textContent = "ดูรายละเอียด";
+      detailButton.addEventListener("click", () =>
+        openRowDetail(row, image, false)
+      );
       actions.appendChild(detailButton);
-      body.appendChild(actions);
 
-      card.append(imageButton, body);
+      const imageButton = document.createElement("button");
+      imageButton.type = "button";
+      imageButton.className = "btn primary small";
+      imageButton.textContent = image ? "ดูภาพ" : "ไม่มีภาพ";
+      imageButton.disabled = !image;
+      if (image) {
+        imageButton.addEventListener("click", () =>
+          openRowDetail(row, image, true)
+        );
+      }
+      actions.appendChild(imageButton);
+
+      body.appendChild(actions);
+      card.appendChild(body);
       grid.appendChild(card);
     });
   }
@@ -457,25 +454,24 @@
       `พบภาพ SDS ${matches.length.toLocaleString("th-TH")} ภาพที่เกี่ยวข้องกับ “${query}”`;
 
     matches.forEach(item => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "sds-library-card";
-
-      const image = document.createElement("img");
-      image.src = item.image;
-      image.alt = item.title;
-      image.loading = "lazy";
+      const card = document.createElement("article");
+      card.className = "sds-library-card sds-library-card-no-thumbnail";
 
       const information = document.createElement("div");
       const title = document.createElement("strong");
       title.textContent = item.title;
       const code = document.createElement("span");
       code.textContent = item.sdsCode;
-      information.append(title, code);
 
-      button.append(image, information);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn primary small";
+      button.textContent = "ดูภาพ";
       button.addEventListener("click", () => openCatalogDetail(item));
-      grid.appendChild(button);
+
+      information.append(title, code, button);
+      card.appendChild(information);
+      grid.appendChild(card);
     });
   }
 
@@ -520,10 +516,13 @@
     $("detailInformation").appendChild(section);
   }
 
-  function openRowDetail(row, image) {
+  function openRowDetail(row, image, showImage = false) {
     $("detailModalTitle").textContent = row.chemicalName || "รายละเอียดสารเคมี";
     $("detailInformation").innerHTML = "";
-    modalImage(image);
+    const detailBody = document.querySelector(".chemical-detail-body");
+    $("detailImageWrap").hidden = !showImage;
+    detailBody.classList.toggle("detail-only", !showImage);
+    if (showImage) modalImage(image);
 
     appendDetailSection("ข้อมูลทะเบียนสารเคมี", [
       ["หน่วยงาน", row.department],
@@ -560,6 +559,8 @@
   function openCatalogDetail(item) {
     $("detailModalTitle").textContent = item.title;
     $("detailInformation").innerHTML = "";
+    $("detailImageWrap").hidden = false;
+    document.querySelector(".chemical-detail-body").classList.remove("detail-only");
     modalImage(item);
     appendDetailSection("ข้อมูลภาพ SDS", [
       ["รหัสภาพ", item.sdsCode],
@@ -600,7 +601,7 @@
     if (!rows.length) {
       const tr = document.createElement("tr");
       const td = document.createElement("td");
-      td.colSpan = 9;
+      td.colSpan = 10;
       td.className = "empty";
       td.textContent = "ไม่พบข้อมูลตามเงื่อนไขที่เลือก";
       tr.appendChild(td);
@@ -639,7 +640,7 @@
       nameButton.type = "button";
       nameButton.className = "chemical-link";
       nameButton.textContent = row.chemicalName || "ไม่ระบุชื่อ";
-      nameButton.addEventListener("click", () => openRowDetail(row, image));
+      nameButton.addEventListener("click", () => openRowDetail(row, image, false));
       nameCell.appendChild(nameButton);
 
       if (row.tradeName) {
@@ -649,6 +650,21 @@
       }
 
       tr.appendChild(nameCell);
+
+      const imageCell = document.createElement("td");
+      const viewImageButton = document.createElement("button");
+      viewImageButton.type = "button";
+      viewImageButton.className = "btn primary small";
+      viewImageButton.textContent = image ? "ดูภาพ" : "ไม่มีภาพ";
+      viewImageButton.disabled = !image;
+      if (image) {
+        viewImageButton.addEventListener("click", () =>
+          openRowDetail(row, image, true)
+        );
+      }
+      imageCell.appendChild(viewImageButton);
+      tr.appendChild(imageCell);
+
       tr.appendChild(makeCell(row.quantity));
       tr.appendChild(makeCell(row.storage, "detail-cell"));
       tr.appendChild(makeCell(row.use, "detail-cell"));
@@ -727,71 +743,33 @@
     URL.revokeObjectURL(url);
   }
 
-  async function fetchApi() {
-    const response = await fetch(
-      `${CONFIG.API_URL}?action=list&_=${Date.now()}`,
-      { cache: "no-store" }
-    );
-    if (!response.ok) throw new Error(`API ${response.status}`);
-    const data = await response.json();
-    if (!data.success || !Array.isArray(data.rows)) {
-      throw new Error(data.message || "รูปแบบข้อมูลไม่ถูกต้อง");
-    }
-    return data.rows;
-  }
-
-  async function load(showMessage = true) {
+  function load(showMessage = true) {
     const banner = $("statusBanner");
-    try {
-      let rows;
-      if (apiReady()) {
-        rows = await fetchApi();
-        state.source = "api";
-        $("dataSourceNote").innerHTML =
-          "<b>แหล่งข้อมูล</b><span>Google Apps Script / Google Sheet</span>";
-        banner.hidden = true;
-      } else {
-        rows = FALLBACK;
-        state.source = "embedded";
-        $("dataSourceNote").innerHTML =
-          "<b>แหล่งข้อมูล</b><span>ข้อมูลตั้งต้นจากไฟล์ Excel</span>";
-        banner.className = "status-banner warning";
-        banner.hidden = false;
-        banner.textContent =
-          "ยังไม่ได้เชื่อม Google Apps Script จึงกำลังแสดงข้อมูลตั้งต้นจากไฟล์ Excel";
-      }
 
-      state.rows = rows.map(row => ({
-        ...row,
-        hazards: Array.isArray(row.hazards) ? row.hazards : [],
-        ppe: Array.isArray(row.ppe) ? row.ppe : []
-      }));
-      state.filtered = [...state.rows];
-      state.page = 1;
+    state.rows = FALLBACK.map(row => ({
+      ...row,
+      hazards: Array.isArray(row.hazards) ? row.hazards : [],
+      ppe: Array.isArray(row.ppe) ? row.ppe : []
+    }));
+    state.filtered = [...state.rows];
+    state.page = 1;
+    state.source = "embedded";
 
-      setupFilters();
-      render();
+    setupFilters();
+    render();
 
-      $("sourceSummary").textContent =
-        `ข้อมูล ${state.rows.length.toLocaleString("th-TH")} รายการ • ` +
-        `${new Set(state.rows.map(row => row.department)).size.toLocaleString("th-TH")} หน่วยงาน • ` +
-        `คลังภาพ SDS ${CATALOG.length.toLocaleString("th-TH")} ภาพ`;
+    $("dataSourceNote").innerHTML =
+      "<b>แหล่งข้อมูล</b><span>ไฟล์ข้อมูลภายใน GitHub</span>";
 
-      if (showMessage) showToast("โหลดข้อมูลล่าสุดแล้ว");
-    } catch (error) {
-      console.error(error);
-      state.rows = FALLBACK;
-      state.filtered = [...FALLBACK];
-      setupFilters();
-      render();
+    banner.hidden = true;
+    banner.textContent = "";
 
-      banner.className = "status-banner danger";
-      banner.hidden = false;
-      banner.textContent =
-        `เชื่อมต่อฐานข้อมูลไม่สำเร็จ กำลังแสดงข้อมูลสำรอง: ${error.message}`;
-      $("dataSourceNote").innerHTML =
-        "<b>แหล่งข้อมูล</b><span>ข้อมูลสำรองจากไฟล์ Excel</span>";
-    }
+    $("sourceSummary").textContent =
+      `ข้อมูล ${state.rows.length.toLocaleString("th-TH")} รายการ • ` +
+      `${new Set(state.rows.map(row => row.department)).size.toLocaleString("th-TH")} หน่วยงาน • ` +
+      `คลังภาพ SDS ${CATALOG.length.toLocaleString("th-TH")} ภาพ`;
+
+    if (showMessage) showToast("โหลดข้อมูลล่าสุดแล้ว");
   }
 
   function render() {

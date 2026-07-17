@@ -33,3 +33,64 @@ footer{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:7px 0 
 @media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:920px){.topbar{align-items:flex-start;flex-direction:column}.layout{grid-template-columns:1fr}.sidebar{position:static;height:auto;border-right:0;border-bottom:1px solid var(--border)}.chart-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.topbar{padding:17px}.brand{align-items:flex-start}.brand-mark{width:48px;height:48px;border-radius:14px}.brand h1{font-size:1.08rem}.eyebrow{font-size:.61rem}.content,.admin-shell{padding:14px}.page-title,.admin-toolbar{align-items:flex-start;flex-direction:column}.page-title .btn,.admin-controls,.admin-controls .btn{width:100%}.kpi-grid{grid-template-columns:1fr 1fr}.kpi-card:last-child{grid-column:1/-1}.form-grid{grid-template-columns:1fr}.span-2{grid-column:auto}.check-grid{grid-template-columns:1fr 1fr}.login-row{flex-direction:column}}
+
+.department-panel{margin-bottom:16px;padding-bottom:17px}
+.department-buttons{display:flex;flex-wrap:wrap;gap:9px;padding:15px 18px 0}
+.department-button{display:inline-flex;align-items:center;gap:7px;border:1px solid #c8d8df;border-radius:999px;background:#fff;color:var(--navy);padding:8px 12px;font-weight:800;font-size:.78rem}
+.department-button:hover,.department-button.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.department-button .count{display:grid;place-items:center;min-width:23px;height:23px;padding:0 6px;border-radius:999px;background:#eaf3f6;color:var(--navy);font-size:.7rem}
+.department-button.active .count,.department-button:hover .count{background:rgba(255,255,255,.2);color:#fff}
+.gallery-panel{margin-bottom:16px;padding-bottom:18px}
+.gallery-heading{align-items:center}
+.chemical-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:15px 18px 0}
+.chemical-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid var(--border);border-radius:13px;background:#fff;box-shadow:0 5px 18px rgba(17,52,70,.07)}
+.chemical-card-image{position:relative;display:block;width:100%;height:235px;padding:0;border:0;background:#eaf1f4;overflow:hidden}
+.chemical-card-image img{width:100%;height:100%;display:block;object-fit:cover;object-position:top}
+.chemical-card-image:hover img{transform:scale(1.025)}
+.chemical-card-image img{transition:transform .2s ease}
+.image-placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:18px;color:var(--muted);text-align:center;background:linear-gradient(145deg,#eef5f7,#f9fbfc)}
+.image-placeholder strong{font-size:2rem;color:#8ca5b1}
+.image-status{position:absolute;left:9px;bottom:9px;padding:5px 8px;border-radius:999px;background:rgba(15,45,61,.88);color:#fff;font-size:.66rem;font-weight:800}
+.chemical-card-body{display:flex;flex-direction:column;gap:8px;flex:1;padding:13px}
+.chemical-card-body h4{margin:0;color:var(--navy);font-size:.94rem;line-height:1.45}
+.chemical-card-title{border:0;background:transparent;padding:0;color:inherit;text-align:left;font-weight:900;cursor:pointer}
+.chemical-card-title:hover{color:var(--blue)}
+.card-department{display:inline-flex;align-self:flex-start;padding:4px 7px;border-radius:999px;background:#eaf4f6;color:var(--teal);font-size:.68rem;font-weight:800}
+.card-trade{margin-top:-4px;color:var(--muted);font-size:.75rem}
+.card-data{display:grid;grid-template-columns:78px minmax(0,1fr);gap:5px 8px;font-size:.72rem;line-height:1.45}
+.card-data dt{color:var(--muted);font-weight:800}.card-data dd{margin:0;color:var(--text)}
+.card-actions{display:flex;gap:7px;margin-top:auto;padding-top:4px}
+.department-link,.chemical-link{border:0;background:transparent;padding:0;text-align:left;color:var(--blue);font-weight:800;cursor:pointer}
+.department-link:hover,.chemical-link:hover{text-decoration:underline}
+.sds-library-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:15px 18px 0}
+.sds-library-card{overflow:hidden;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;text-align:left;padding:0}
+.sds-library-card img{width:100%;height:225px;display:block;object-fit:cover;object-position:top;background:#edf2f4}
+.sds-library-card div{padding:10px}.sds-library-card strong{display:block;color:var(--navy);font-size:.78rem;line-height:1.4}.sds-library-card span{display:block;margin-top:5px;color:var(--muted);font-size:.67rem}
+.chemical-detail-card{width:min(1180px,100%);max-height:94vh}
+.chemical-detail-body{display:grid;grid-template-columns:minmax(340px,1.15fr) minmax(300px,.85fr);gap:18px;padding:18px}
+.detail-image-wrap{min-height:300px;display:flex;align-items:flex-start;justify-content:center;border:1px solid var(--border);border-radius:12px;background:#edf3f5;overflow:auto}
+.detail-image-wrap img{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain}
+.detail-information{display:flex;flex-direction:column;gap:12px}
+.detail-section{padding:13px;border:1px solid var(--border);border-radius:11px;background:#fff}
+.detail-section h4{margin:0 0 9px;color:var(--navy)}
+.detail-grid{display:grid;grid-template-columns:115px minmax(0,1fr);gap:7px 10px;font-size:.8rem;line-height:1.5}
+.detail-grid dt{color:var(--muted);font-weight:800}.detail-grid dd{margin:0}
+.detail-note{padding:10px 12px;border-radius:9px;background:#fff5e5;color:#805000;font-size:.75rem;line-height:1.55}
+.gallery-empty{grid-column:1/-1;padding:32px;text-align:center;color:var(--muted);border:1px dashed #c8d8df;border-radius:12px}
+@media(max-width:1300px){.chemical-card-grid{grid-template-columns:repeat(3,1fr)}.sds-library-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:930px){.chemical-card-grid{grid-template-columns:repeat(2,1fr)}.sds-library-grid{grid-template-columns:repeat(3,1fr)}.chemical-detail-body{grid-template-columns:1fr}}
+@media(max-width:620px){.chemical-card-grid,.sds-library-grid{grid-template-columns:1fr}.chemical-card-image,.sds-library-card img{height:290px}.detail-grid{grid-template-columns:95px minmax(0,1fr)}}
+
+/* เวอร์ชันปุ่มดูภาพ: ไม่แสดง Thumbnail บนหน้ารายการ */
+.chemical-card-no-thumbnail{overflow:visible}
+.card-top-line{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.image-availability{display:inline-flex;padding:4px 7px;border-radius:999px;font-size:.67rem;font-weight:800;white-space:nowrap}
+.image-availability.available{background:#e9f5ed;color:var(--safe)}
+.image-availability.unavailable{background:#edf2f4;color:var(--muted)}
+.chemical-card-no-thumbnail .chemical-card-body{padding:15px}
+.chemical-card-no-thumbnail .card-actions{border-top:1px solid var(--border);padding-top:11px;margin-top:5px}
+.sds-library-card-no-thumbnail{cursor:default}
+.sds-library-card-no-thumbnail div{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:13px}
+.sds-library-card-no-thumbnail .btn{margin-top:3px}
+.chemical-detail-body.detail-only{grid-template-columns:minmax(0,1fr)}
+.chemical-detail-body.detail-only .detail-information{max-width:850px;width:100%;margin:0 auto}
