@@ -1,9 +1,6 @@
 window.CHEMICAL_APP_CONFIG = {
   // วาง URL ที่ได้จาก Deploy Google Apps Script Web App
-  API_URL: "PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE",
-
-  // เมื่อวาง URL แล้วให้เปลี่ยนเป็น true
-  API_ENABLED: false,
-
+  API_URL: "script.google.com/macros/s/AKfycbwMKsl0zuKAUo4M6QGdSvHLirFoxQ5c5wprG67MSQGmvdzcw9qN5k16q1azUP2m1ZYzVA/exec",
+  API_ENABLED: true,
   PAGE_SIZE: 25
 };
