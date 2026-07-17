@@ -11,7 +11,7 @@
   };
 
   const $ = id => document.getElementById(id);
-  const mobileMedia = window.matchMedia("(max-width: 760px)");
+  const mobileMedia = window.matchMedia("(max-width: 900px)");
   const isMobileView = () => mobileMedia.matches;
   const text = value => String(value ?? "").trim();
   const normalize = value => text(value).toLowerCase().replace(/\s+/g, " ");
@@ -721,11 +721,18 @@
       filterBackdrop.addEventListener("click", closeMobileFilters);
     }
 
-    mobileMedia.addEventListener("change", () => {
+    const handleResponsiveChange = () => {
       closeMobileFilters();
       state.galleryHidden = false;
       renderGallery();
-    });
+      renderCharts(state.filtered);
+    };
+
+    if (typeof mobileMedia.addEventListener === "function") {
+      mobileMedia.addEventListener("change", handleResponsiveChange);
+    } else if (typeof mobileMedia.addListener === "function") {
+      mobileMedia.addListener(handleResponsiveChange);
+    }
 
     $("closeGallery").addEventListener("click", () => {
       state.galleryHidden = true;
