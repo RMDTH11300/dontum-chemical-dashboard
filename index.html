@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#12384c">
   <title>Dashboard สารเคมี | โรงพยาบาลดอนตูม</title>
-  <link rel="stylesheet" href="assets/style.css?v=6">
+  <link rel="stylesheet" href="assets/style.css?v=7">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-  <script src="assets/config.js?v=6"></script>
-  <script src="data/chemicals.js?v=6"></script>
-  <script src="data/image_catalog.js?v=6"></script>
-  <script src="assets/app.js?v=6" defer></script>
+  <script src="assets/config.js?v=7"></script>
+  <script src="data/chemicals.js?v=7"></script>
+  <script src="data/image_catalog.js?v=7"></script>
+  <script src="assets/app.js?v=7" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -23,7 +23,6 @@
       </div>
     </div>
     <div class="header-actions">
-      <a class="btn light" href="admin.html">เข้าสู่ระบบ Admin</a>
       <button id="refreshBtn" class="btn light" type="button">↻ รีเฟรชข้อมูล</button>
     </div>
   </header>
@@ -72,7 +71,7 @@
 
       <div class="note warning">
         <b>ภาพ SDS</b>
-        <span>มีภาพ SDS จำนวน 96 ภาพ ระบบจะแสดงภาพที่จับคู่ชื่อสารได้ และแสดงคลังภาพที่ตรงกับคำค้น</span>
+        <span>มีภาพ SDS จำนวน 96 ภาพ ภาพจะเปิดเมื่อกดปุ่ม “ดูภาพ” เท่านั้น</span>
       </div>
     </aside>
 
@@ -99,7 +98,7 @@
         <div class="panel-head">
           <div>
             <h3>เลือกดูตามหน่วยงาน</h3>
-            <p>กดชื่อหน่วยงานเพื่อแสดงรายการสารเคมีและภาพที่จับคู่ได้</p>
+            <p>กดชื่อหน่วยงานเพื่อแสดงรายการสารเคมี พร้อมปุ่มดูภาพ SDS</p>
           </div>
         </div>
         <div id="departmentButtons" class="department-buttons"></div>
@@ -108,7 +107,7 @@
       <section id="chemicalGalleryPanel" class="panel gallery-panel" hidden>
         <div class="panel-head gallery-heading">
           <div>
-            <h3 id="galleryTitle">รายการสารเคมีพร้อมภาพ</h3>
+            <h3 id="galleryTitle">รายการสารเคมีและรายละเอียด</h3>
             <p id="gallerySummary"></p>
           </div>
           <button id="closeGallery" class="btn outline small" type="button">ซ่อนรายการภาพ</button>
@@ -142,10 +141,16 @@
           <table>
             <thead>
               <tr>
-                <th>ลำดับ</th><th>หน่วยงาน</th><th>ลำดับ/รหัส</th>
-                <th>ชื่อสารเคมี / ชื่อการค้า</th><th>ปริมาณ</th>
-                <th>สถานที่เก็บ</th><th>การใช้ประโยชน์</th>
-                <th>ความเป็นอันตราย</th><th>PPE</th>
+                <th>ลำดับ</th>
+                <th>หน่วยงาน</th>
+                <th>ลำดับ/รหัส</th>
+                <th>ชื่อสารเคมี / ชื่อการค้า</th>
+                <th>ภาพ SDS</th>
+                <th>ปริมาณ</th>
+                <th>สถานที่เก็บ</th>
+                <th>การใช้ประโยชน์</th>
+                <th>ความเป็นอันตราย</th>
+                <th>PPE</th>
               </tr>
             </thead>
             <tbody id="tableBody"></tbody>

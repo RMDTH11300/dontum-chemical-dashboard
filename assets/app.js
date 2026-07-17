@@ -7,17 +7,25 @@
   const CATALOG = Array.isArray(window.SDS_IMAGE_CATALOG) ? window.SDS_IMAGE_CATALOG : [];
 
   const ROW_IMAGE_MAP = {
-    "001":"001","002":"002","003":"047","006":"022","008":"058",
-    "009":"005","010":"005","011":"043","030":"068","032":"008",
-    "041":"010","042":"010","045":"079","051":"011","064":"013",
-    "068":"012","070":"019","079":"044","086":"001","088":"007",
+    "001":"001",
+    "002":"002",
+    "006":"022",
+    "008":"058",
+    "009":"005",
+    "010":"005",
+    "011":"043",
+    "030":"068",
+    "041":"010",
+    "042":"010",
+    "045":"079",
+    "051":"011",
+    "064":"013",
+    "070":"019",
+    "086":"001",
+    "088":"007",
     "090":"080"
   };
 
-  const BLOCK_AUTO_MATCH = new Set([
-    "004","005","007","021","023","034","037","048","050","052",
-    "067","087","089"
-  ]);
 
   const state = {
     rows: [], filtered: [], page: 1, charts: {},
@@ -252,10 +260,8 @@
 
   function imageForRow(row) {
     const rowCode = codeKey(row.code);
-    if (Object.prototype.hasOwnProperty.call(ROW_IMAGE_MAP, rowCode)) {
-      return catalogById(ROW_IMAGE_MAP[rowCode]);
-    }
-    return autoMatchImage(row);
+    const imageId = ROW_IMAGE_MAP[rowCode];
+    return imageId ? catalogById(imageId) : null;
   }
 
   function renderDepartmentButtons() {
@@ -356,14 +362,8 @@
       topLine.append(dept, imageAvailability);
 
       const heading = document.createElement("h4");
-      const titleButton = document.createElement("button");
-      titleButton.type = "button";
-      titleButton.className = "chemical-card-title";
-      titleButton.textContent = row.chemicalName || "ไม่ระบุชื่อ";
-      titleButton.addEventListener("click", () =>
-        openRowDetail(row, image, false)
-      );
-      heading.appendChild(titleButton);
+      heading.className = "chemical-card-title-static";
+      heading.textContent = row.chemicalName || "ไม่ระบุชื่อ";
 
       body.append(topLine, heading);
 
@@ -520,7 +520,9 @@
     $("detailModalTitle").textContent = row.chemicalName || "รายละเอียดสารเคมี";
     $("detailInformation").innerHTML = "";
     const detailBody = document.querySelector(".chemical-detail-body");
-    $("detailImageWrap").hidden = !showImage;
+    const imageWrap = $("detailImageWrap");
+    imageWrap.innerHTML = "";
+    imageWrap.hidden = !showImage;
     detailBody.classList.toggle("detail-only", !showImage);
     if (showImage) modalImage(image);
 
@@ -594,7 +596,31 @@
     return td;
   }
 
+  function ensureTableHeaders() {
+    const headerRow = document.querySelector(".table-panel thead tr");
+    if (!headerRow) return;
+    const headers = [
+      "ลำดับ",
+      "หน่วยงาน",
+      "ลำดับ/รหัส",
+      "ชื่อสารเคมี / ชื่อการค้า",
+      "ภาพ SDS",
+      "ปริมาณ",
+      "สถานที่เก็บ",
+      "การใช้ประโยชน์",
+      "ความเป็นอันตราย",
+      "PPE"
+    ];
+    headerRow.innerHTML = "";
+    headers.forEach(label => {
+      const th = document.createElement("th");
+      th.textContent = label;
+      headerRow.appendChild(th);
+    });
+  }
+
   function renderTable(rows) {
+    ensureTableHeaders();
     const body = $("tableBody");
     body.innerHTML = "";
 
@@ -636,12 +662,11 @@
 
       const nameCell = document.createElement("td");
       nameCell.className = "name-cell";
-      const nameButton = document.createElement("button");
-      nameButton.type = "button";
-      nameButton.className = "chemical-link";
-      nameButton.textContent = row.chemicalName || "ไม่ระบุชื่อ";
-      nameButton.addEventListener("click", () => openRowDetail(row, image, false));
-      nameCell.appendChild(nameButton);
+
+      const chemicalName = document.createElement("strong");
+      chemicalName.className = "chemical-name-text";
+      chemicalName.textContent = row.chemicalName || "ไม่ระบุชื่อ";
+      nameCell.appendChild(chemicalName);
 
       if (row.tradeName) {
         const trade = document.createElement("span");
