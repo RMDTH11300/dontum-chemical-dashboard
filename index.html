@@ -4,21 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#12384c">
-  <title>Dashboard สารเคมี | โรงพยาบาลดอนตูม</title>
-  <link rel="stylesheet" href="assets/style.css?v=7">
+  <title>Quick Reference สารเคมี | โรงพยาบาลดอนตูม</title>
+  <link rel="stylesheet" href="assets/style.css?v=8">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-  <script src="assets/config.js?v=7"></script>
-  <script src="data/chemicals.js?v=7"></script>
-  <script src="data/image_catalog.js?v=7"></script>
-  <script src="assets/app.js?v=7" defer></script>
+  <script src="assets/config.js?v=8"></script>
+  <script src="data/chemicals.js?v=8"></script>
+  <script src="assets/app.js?v=8" defer></script>
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
       <div class="brand-mark">CH</div>
       <div>
-        <span class="eyebrow">DON TUM CHEMICAL INVENTORY</span>
-        <h1>ระบบข้อมูลสารเคมีภายในโรงพยาบาล</h1>
+        <span class="eyebrow">WI-CHEM-001 • DON TUM CHEMICAL QUICK REFERENCE</span>
+        <h1>ระบบข้อมูลและแนวทางเบื้องต้นด้านสารเคมี</h1>
         <p>โรงพยาบาลดอนตูม จังหวัดนครปฐม</p>
       </div>
     </div>
@@ -36,69 +35,98 @@
 
       <label class="field">
         <span>ค้นหา</span>
-        <input id="searchInput" type="search" placeholder="ชื่อสารเคมี ชื่อการค้า รหัส…">
+        <input id="searchInput" type="search"
+          placeholder="ชื่อสารเคมี รหัส หน่วยงาน PPE…">
       </label>
 
       <label class="field">
         <span>หน่วยงาน</span>
-        <select id="departmentFilter"><option value="">ทุกหน่วยงาน</option></select>
+        <select id="departmentFilter">
+          <option value="">ทุกหน่วยงาน</option>
+        </select>
       </label>
 
       <label class="field">
-        <span>ความเป็นอันตราย</span>
-        <select id="hazardFilter"><option value="">ทุกประเภท</option></select>
+        <span>กลุ่มอันตรายเบื้องต้น</span>
+        <select id="hazardFilter">
+          <option value="">ทุกกลุ่มอันตราย</option>
+        </select>
       </label>
 
       <label class="field">
         <span>อุปกรณ์ป้องกันส่วนบุคคล</span>
-        <select id="ppeFilter"><option value="">ทุกประเภท</option></select>
-      </label>
-
-      <label class="field">
-        <span>ความครบถ้วน</span>
-        <select id="completenessFilter">
-          <option value="">ทุกสถานะ</option>
-          <option value="complete">มีสถานที่เก็บและการใช้ประโยชน์</option>
-          <option value="missing-storage">ไม่ระบุสถานที่เก็บ</option>
-          <option value="missing-use">ไม่ระบุการใช้ประโยชน์</option>
-          <option value="missing-ppe">ไม่ระบุ PPE</option>
+        <select id="ppeFilter">
+          <option value="">PPE ทุกประเภท</option>
         </select>
       </label>
 
-      <div id="dataSourceNote" class="note">
-        <b>แหล่งข้อมูล</b><span>กำลังตรวจสอบ…</span>
+      <label class="field">
+        <span>สถานะทบทวน</span>
+        <select id="reviewFilter">
+          <option value="">ทุกสถานะ</option>
+        </select>
+      </label>
+
+      <div class="note">
+        <b>แหล่งข้อมูล</b>
+        <span>WI-CHEM-001 Quick Reference สารเคมี 96 รายการ</span>
       </div>
 
       <div class="note warning">
-        <b>ภาพ SDS</b>
-        <span>มีภาพ SDS จำนวน 96 ภาพ ภาพจะเปิดเมื่อกดปุ่ม “ดูภาพ” เท่านั้น</span>
+        <b>ข้อควรทราบ</b>
+        <span>ข้อมูลนี้ใช้เป็นแนวทางตอบสนองเบื้องต้น ไม่ใช้แทน SDS ของผู้ผลิต</span>
+      </div>
+
+      <div class="note danger">
+        <b>Major Spill</b>
+        <span>สารไม่ทราบชนิด ปริมาณมาก มีไอพิษ ไฟไหม้ ผู้บาดเจ็บ หรือเกินขีดความสามารถของหน่วยงาน ห้ามเก็บกู้เอง</span>
       </div>
     </aside>
 
     <main class="content">
       <section class="page-title">
         <div>
-          <h2>ภาพรวมทะเบียนสารเคมี</h2>
+          <h2>Quick Reference สารเคมี</h2>
           <p id="sourceSummary">กำลังเตรียมข้อมูล…</p>
         </div>
-        <button id="exportFiltered" class="btn outline" type="button">ส่งออกข้อมูลที่กรองแล้ว</button>
+        <button id="exportFiltered" class="btn outline" type="button">
+          ส่งออกข้อมูลที่กรองแล้ว
+        </button>
       </section>
 
-      <section id="statusBanner" class="status-banner" hidden></section>
+      <section id="statusBanner" class="status-banner warning">
+        ข้อมูลเป็นร่างเพื่อทบทวนร่วมกับหน่วยงานเจ้าของสารเคมี ENV/RM/IC/อาชีวอนามัย
+        ก่อนอนุมัติใช้งาน
+      </section>
 
       <section class="kpi-grid">
-        <article class="kpi-card"><span class="icon">▦</span><div><b id="kpiRecords">0</b><small>รายการสารเคมี</small></div></article>
-        <article class="kpi-card"><span class="icon">◉</span><div><b id="kpiUnique">0</b><small>ชื่อสารเคมีไม่ซ้ำ</small></div></article>
-        <article class="kpi-card"><span class="icon">⌂</span><div><b id="kpiDepartments">0</b><small>หน่วยงาน</small></div></article>
-        <article class="kpi-card hazard"><span class="icon">!</span><div><b id="kpiHazard">0</b><small>รายการที่ระบุอันตราย</small></div></article>
-        <article class="kpi-card ppe"><span class="icon">✓</span><div><b id="kpiPpe">0</b><small>รายการที่ระบุ PPE</small></div></article>
+        <article class="kpi-card">
+          <span class="icon">▦</span>
+          <div><b id="kpiRecords">0</b><small>รายการสารเคมี</small></div>
+        </article>
+        <article class="kpi-card">
+          <span class="icon">⌂</span>
+          <div><b id="kpiDepartments">0</b><small>หน่วยงาน</small></div>
+        </article>
+        <article class="kpi-card hazard">
+          <span class="icon">!</span>
+          <div><b id="kpiHazards">0</b><small>กลุ่มอันตราย</small></div>
+        </article>
+        <article class="kpi-card ppe">
+          <span class="icon">◫</span>
+          <div><b id="kpiImages">0</b><small>รายการที่มีภาพตรวจสอบแล้ว</small></div>
+        </article>
+        <article class="kpi-card warning-card">
+          <span class="icon">⌛</span>
+          <div><b id="kpiPending">0</b><small>รายการรอทบทวน</small></div>
+        </article>
       </section>
 
       <section class="panel department-panel">
         <div class="panel-head">
           <div>
             <h3>เลือกดูตามหน่วยงาน</h3>
-            <p>กดชื่อหน่วยงานเพื่อแสดงรายการสารเคมี พร้อมปุ่มดูภาพ SDS</p>
+            <p>กดชื่อหน่วยงานเพื่อแสดงรายการสารเคมีและรายละเอียดเบื้องต้น</p>
           </div>
         </div>
         <div id="departmentButtons" class="department-buttons"></div>
@@ -107,50 +135,77 @@
       <section id="chemicalGalleryPanel" class="panel gallery-panel" hidden>
         <div class="panel-head gallery-heading">
           <div>
-            <h3 id="galleryTitle">รายการสารเคมีและรายละเอียด</h3>
+            <h3 id="galleryTitle">รายการสารเคมี</h3>
             <p id="gallerySummary"></p>
           </div>
-          <button id="closeGallery" class="btn outline small" type="button">ซ่อนรายการภาพ</button>
+          <button id="closeGallery" class="btn outline small" type="button">
+            ซ่อนรายการ
+          </button>
         </div>
         <div id="chemicalCardGrid" class="chemical-card-grid"></div>
       </section>
 
-      <section id="sdsLibraryPanel" class="panel gallery-panel sds-library-panel" hidden>
-        <div class="panel-head">
-          <div>
-            <h3>คลังภาพ SDS ที่ตรงกับคำค้น</h3>
-            <p id="sdsLibrarySummary"></p>
-          </div>
-        </div>
-        <div id="sdsLibraryGrid" class="sds-library-grid"></div>
-      </section>
-
       <section class="chart-grid">
-        <article class="panel"><div class="panel-head"><div><h3>จำนวนรายการตามหน่วยงาน</h3><p>เรียงจากมากไปน้อย</p></div></div><div class="chart-box"><canvas id="departmentChart"></canvas></div></article>
-        <article class="panel"><div class="panel-head"><div><h3>กลุ่มความเป็นอันตราย</h3><p>หนึ่งรายการอาจอยู่ได้หลายกลุ่ม</p></div></div><div class="chart-box"><canvas id="hazardChart"></canvas></div></article>
-        <article class="panel"><div class="panel-head"><div><h3>อุปกรณ์ป้องกันส่วนบุคคล</h3><p>จำนวนรายการที่ระบุ PPE แต่ละชนิด</p></div></div><div class="chart-box"><canvas id="ppeChart"></canvas></div></article>
-        <article class="panel"><div class="panel-head"><div><h3>ความครบถ้วนของข้อมูล</h3><p>ร้อยละของรายการหลังใช้ตัวกรอง</p></div></div><div class="chart-box"><canvas id="qualityChart"></canvas></div></article>
+        <article class="panel">
+          <div class="panel-head"><div>
+            <h3>จำนวนรายการตามหน่วยงาน</h3>
+            <p>เรียงจากมากไปน้อย</p>
+          </div></div>
+          <div class="chart-box"><canvas id="departmentChart"></canvas></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div>
+            <h3>กลุ่มอันตรายเบื้องต้น</h3>
+            <p>หนึ่งรายการอาจแสดงข้อความความเสี่ยงหลายด้าน</p>
+          </div></div>
+          <div class="chart-box"><canvas id="hazardChart"></canvas></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div>
+            <h3>อุปกรณ์ป้องกันส่วนบุคคล</h3>
+            <p>จำนวนรายการที่ระบุ PPE แต่ละประเภท</p>
+          </div></div>
+          <div class="chart-box"><canvas id="ppeChart"></canvas></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div>
+            <h3>สถานะทบทวนข้อมูล</h3>
+            <p>สถานะตามเอกสาร Quick Reference</p>
+          </div></div>
+          <div class="chart-box"><canvas id="reviewChart"></canvas></div>
+        </article>
       </section>
 
       <section class="panel table-panel">
         <div class="panel-head table-head">
-          <div><h3>ทะเบียนสารเคมี</h3><p>แสดง <strong id="resultCount">0</strong> รายการ</p></div>
-          <div class="legend"><span><i class="dot danger"></i>ความเป็นอันตราย</span><span><i class="dot safe"></i>PPE</span></div>
+          <div>
+            <h3>ทะเบียน Quick Reference สารเคมี</h3>
+            <p>แสดง <strong id="resultCount">0</strong> รายการ</p>
+          </div>
+          <div class="legend">
+            <span><i class="dot danger"></i>อันตราย/ข้อห้าม</span>
+            <span><i class="dot safe"></i>PPE/วิธีควบคุม</span>
+          </div>
         </div>
+
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>ลำดับ</th>
                 <th>หน่วยงาน</th>
-                <th>ลำดับ/รหัส</th>
-                <th>ชื่อสารเคมี / ชื่อการค้า</th>
+                <th>Chemical ID</th>
+                <th>ชื่อสารเคมี</th>
                 <th>ภาพ SDS</th>
-                <th>ปริมาณ</th>
-                <th>สถานที่เก็บ</th>
-                <th>การใช้ประโยชน์</th>
-                <th>ความเป็นอันตราย</th>
+                <th>กลุ่มอันตรายเบื้องต้น</th>
                 <th>PPE</th>
+                <th>Spill Kit / วิธีควบคุม</th>
+                <th>ปฐมพยาบาล</th>
+                <th>ข้อห้ามสำคัญ</th>
+                <th>สถานะทบทวน</th>
               </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -160,9 +215,9 @@
       </section>
 
       <footer>
-        <span>Dashboard ข้อมูลสารเคมี โรงพยาบาลดอนตูม</span>
+        <span>WI-CHEM-001 Quick Reference</span>
         <span>•</span>
-        <span>ภาพ SDS จำนวน 96 ภาพ</span>
+        <span>ไม่ใช้แทน SDS ฉบับปัจจุบันของผู้ผลิต</span>
       </footer>
     </main>
   </div>
@@ -171,10 +226,10 @@
     <div class="modal-card chemical-detail-card">
       <div class="modal-head">
         <h3 id="detailModalTitle">รายละเอียดสารเคมี</h3>
-        <button id="closeDetailModal" class="close-button" type="button" aria-label="ปิด">×</button>
+        <button id="closeDetailModal" class="close-button" type="button">×</button>
       </div>
       <div class="chemical-detail-body">
-        <div id="detailImageWrap" class="detail-image-wrap"></div>
+        <div id="detailImageWrap" class="detail-image-wrap" hidden></div>
         <div id="detailInformation" class="detail-information"></div>
       </div>
     </div>
