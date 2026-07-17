@@ -45,7 +45,7 @@
   function setupFilters() {
     fillSelect(
       "departmentFilter",
-      uniqueSorted(state.rows.map(row => row.department)),
+      uniqueSorted(state.rows.flatMap(row => row.departments || [row.department])),
       "ทุกหน่วยงาน"
     );
     fillSelect(
@@ -74,13 +74,13 @@
 
     state.filtered = state.rows.filter(row => {
       const blob = normalize([
-        row.id, row.sdsCode, row.chemicalName, row.department,
+        row.id, row.sdsCode, row.chemicalName, ...(row.departments || [row.department]),
         row.hazardGroup, row.ppeText, row.spillControl, row.firstAid,
         row.prohibitions, row.reviewStatus
       ].join(" "));
 
       return (!query || blob.includes(query))
-        && (!department || row.department === department)
+        && (!department || (row.departments || [row.department]).includes(department))
         && (!hazard || row.hazardGroup === hazard)
         && (!ppe || (row.ppe || []).includes(ppe))
         && (!review || row.reviewStatus === review);
@@ -133,7 +133,7 @@
   function updateKpis(rows) {
     $("kpiRecords").textContent = rows.length.toLocaleString("th-TH");
     $("kpiDepartments").textContent =
-      new Set(rows.map(row => row.department).filter(Boolean))
+      new Set(rows.flatMap(row => row.departments || [row.department]).filter(Boolean))
         .size.toLocaleString("th-TH");
     $("kpiHazards").textContent =
       new Set(rows.map(row => row.hazardGroup).filter(Boolean))
@@ -175,7 +175,7 @@
   }
 
   function renderCharts(rows) {
-    let values = countBy(rows.map(row => row.department));
+    let values = countBy(rows.flatMap(row => row.departments || [row.department]));
     drawChart(
       "departmentChart", "bar",
       values.map(item => item[0]), values.map(item => item[1]),
@@ -209,7 +209,7 @@
     wrap.innerHTML = "";
     const selected = $("departmentFilter").value;
 
-    countBy(state.rows.map(row => row.department))
+    countBy(state.rows.flatMap(row => row.departments || [row.department]))
       .forEach(([department, count]) => {
         const button = document.createElement("button");
         button.type = "button";
@@ -230,6 +230,31 @@
         });
         wrap.appendChild(button);
       });
+  }
+
+  function createDepartmentButtons(row, compact = false) {
+    const wrap = document.createElement("div");
+    wrap.className = compact
+      ? "department-tag-list compact"
+      : "department-tag-list";
+
+    const departments = row.departments || [row.department];
+
+    departments.forEach(department => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = compact
+        ? "department-mini-button compact"
+        : "department-mini-button";
+      button.textContent = department;
+      button.addEventListener("click", () => {
+        $("departmentFilter").value = department;
+        applyFilters({ scrollGallery: true });
+      });
+      wrap.appendChild(button);
+    });
+
+    return wrap;
   }
 
   function createTags(items, kind) {
@@ -294,21 +319,14 @@
       const topLine = document.createElement("div");
       topLine.className = "card-top-line";
 
-      const departmentButton = document.createElement("button");
-      departmentButton.type = "button";
-      departmentButton.className = "card-department";
-      departmentButton.textContent = row.department;
-      departmentButton.addEventListener("click", () => {
-        $("departmentFilter").value = row.department;
-        applyFilters({ scrollGallery: true });
-      });
+      const departmentButtons = createDepartmentButtons(row, true);
 
       const imageStatus = document.createElement("span");
       imageStatus.className =
         `image-availability ${image ? "available" : "unavailable"}`;
       imageStatus.textContent = image ? "มีภาพ SDS" : "ยังไม่มีภาพ";
 
-      topLine.append(departmentButton, imageStatus);
+      topLine.append(departmentButtons, imageStatus);
 
       const title = document.createElement("h4");
       title.className = "chemical-card-title-static";
@@ -394,7 +412,7 @@
       ["Chemical ID", row.id],
       ["SDS Code", row.sdsCode],
       ["ชื่อสารเคมี", row.chemicalName],
-      ["หน่วยงาน", row.department],
+      ["หน่วยงาน", (row.departments || [row.department]).join(", ")],
       ["กลุ่มอันตราย", row.hazardGroup],
     ].forEach(([label, value]) => {
       const dt = document.createElement("dt");
@@ -512,15 +530,8 @@
       tr.appendChild(makeCell(String(start + index + 1)));
 
       const departmentCell = document.createElement("td");
-      const departmentButton = document.createElement("button");
-      departmentButton.type = "button";
-      departmentButton.className = "department-link";
-      departmentButton.textContent = row.department;
-      departmentButton.addEventListener("click", () => {
-        $("departmentFilter").value = row.department;
-        applyFilters({ scrollGallery: true });
-      });
-      departmentCell.appendChild(departmentButton);
+      departmentCell.className = "multi-department-cell";
+      departmentCell.appendChild(createDepartmentButtons(row, false));
       tr.appendChild(departmentCell);
 
       tr.appendChild(makeCell(row.id));
@@ -610,7 +621,7 @@
     ];
 
     const rows = state.filtered.map(row => [
-      row.id, row.sdsCode, row.chemicalName, row.department,
+      row.id, row.sdsCode, row.chemicalName, ...(row.departments || [row.department]),
       row.hazardGroup, row.ppeText, row.spillControl,
       row.firstAid, row.prohibitions, row.reviewStatus
     ]);
@@ -632,6 +643,9 @@
   function load(showMessage = true) {
     state.rows = DATA.map(row => ({
       ...row,
+      departments: Array.isArray(row.departments) && row.departments.length
+        ? row.departments
+        : [row.department || "ไม่ระบุหน่วยงาน"],
       hazards: Array.isArray(row.hazards) ? row.hazards : [],
       ppe: Array.isArray(row.ppe) ? row.ppe : []
     }));
@@ -643,7 +657,7 @@
 
     $("sourceSummary").textContent =
       `ข้อมูล ${state.rows.length.toLocaleString("th-TH")} รายการ • ` +
-      `${new Set(state.rows.map(row => row.department)).size.toLocaleString("th-TH")} หน่วยงาน • ` +
+      `${new Set(state.rows.flatMap(row => row.departments || [row.department])).size.toLocaleString("th-TH")} หน่วยงาน • ` +
       `มีภาพที่ตรวจสอบแล้ว ${state.rows.filter(row => imageForRow(row)).length.toLocaleString("th-TH")} รายการ`;
 
     if (showMessage) showToast("โหลดข้อมูลล่าสุดแล้ว");
