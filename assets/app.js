@@ -11,8 +11,6 @@
   };
 
   const $ = id => document.getElementById(id);
-  const mobileMedia = window.matchMedia("(max-width: 820px)");
-  const isMobileView = () => mobileMedia.matches;
   const text = value => String(value ?? "").trim();
   const normalize = value => text(value).toLowerCase().replace(/\s+/g, " ");
 
@@ -285,17 +283,14 @@
     const grid = $("chemicalCardGrid");
     const query = text($("searchInput").value);
     const department = $("departmentFilter").value;
-    const mobile = isMobileView();
     const shouldShow =
-      !state.galleryHidden && (mobile || Boolean(query || department));
+      !state.galleryHidden && Boolean(query || department);
 
     panel.hidden = !shouldShow;
     if (!shouldShow) return;
 
     grid.innerHTML = "";
-    const rows = mobile
-      ? state.filtered
-      : state.filtered.slice(0, 48);
+    const rows = state.filtered.slice(0, 48);
 
     $("galleryTitle").textContent = department
       ? `สารเคมีของหน่วยงาน ${department}`
@@ -305,7 +300,7 @@
 
     $("gallerySummary").textContent =
       `พบ ${state.filtered.length.toLocaleString("th-TH")} รายการ` +
-      (!mobile && state.filtered.length > 48 ? " • แสดง 48 รายการแรก" : "");
+      (state.filtered.length > 48 ? " • แสดง 48 รายการแรก" : "");
 
     if (!rows.length) {
       const empty = document.createElement("div");
@@ -670,34 +665,6 @@
     if (showMessage) showToast("โหลดข้อมูลล่าสุดแล้ว");
   }
 
-  let lockedScrollY = 0;
-
-  function openMobileFilters() {
-    if (!isMobileView()) return;
-
-    lockedScrollY = window.scrollY || 0;
-    document.body.style.setProperty("--locked-scroll-y", `${lockedScrollY}px`);
-    document.body.classList.add("filter-open");
-
-    const button = $("mobileFilterBtn");
-    if (button) button.setAttribute("aria-expanded", "true");
-
-    const firstInput = $("searchInput");
-    window.setTimeout(() => firstInput?.focus({ preventScroll: true }), 180);
-  }
-
-  function closeMobileFilters() {
-    const wasOpen = document.body.classList.contains("filter-open");
-    document.body.classList.remove("filter-open");
-
-    const button = $("mobileFilterBtn");
-    if (button) button.setAttribute("aria-expanded", "false");
-
-    if (wasOpen) {
-      window.scrollTo(0, lockedScrollY);
-    }
-  }
-
   function render() {
     updateKpis(state.filtered);
     renderCharts(state.filtered);
@@ -712,45 +679,13 @@
     [
       "departmentFilter", "hazardFilter", "ppeFilter", "reviewFilter"
     ].forEach(id => {
-      $(id).addEventListener("change", () => {
-        applyFilters();
-        if (isMobileView()) closeMobileFilters();
-      });
+      $(id).addEventListener("change", () => applyFilters());
     });
 
-    $("clearFilters").addEventListener("click", () => {
-      clearFilters();
-      if (isMobileView()) closeMobileFilters();
-    });
+    $("clearFilters").addEventListener("click", clearFilters);
     $("exportFiltered").addEventListener("click", exportCsv);
     $("refreshBtn").addEventListener("click", () => load(true));
 
-    const mobileFilterButton = $("mobileFilterBtn");
-    const closeFilterButton = $("closeMobileFilters");
-    const filterBackdrop = $("filterBackdrop");
-
-    if (mobileFilterButton) {
-      mobileFilterButton.addEventListener("click", openMobileFilters);
-    }
-    if (closeFilterButton) {
-      closeFilterButton.addEventListener("click", closeMobileFilters);
-    }
-    if (filterBackdrop) {
-      filterBackdrop.addEventListener("click", closeMobileFilters);
-    }
-
-    const handleResponsiveChange = () => {
-      closeMobileFilters();
-      state.galleryHidden = false;
-      renderGallery();
-      renderCharts(state.filtered);
-    };
-
-    if (typeof mobileMedia.addEventListener === "function") {
-      mobileMedia.addEventListener("change", handleResponsiveChange);
-    } else if (typeof mobileMedia.addListener === "function") {
-      mobileMedia.addListener(handleResponsiveChange);
-    }
 
     $("closeGallery").addEventListener("click", () => {
       state.galleryHidden = true;
@@ -763,10 +698,7 @@
     });
 
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        closeModal();
-        closeMobileFilters();
-      }
+      if (event.key === "Escape") closeModal();
     });
 
     load(false);
