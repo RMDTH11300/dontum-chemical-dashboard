@@ -11,7 +11,7 @@
   };
 
   const $ = id => document.getElementById(id);
-  const mobileMedia = window.matchMedia("(max-width: 900px)");
+  const mobileMedia = window.matchMedia("(max-width: 820px)");
   const isMobileView = () => mobileMedia.matches;
   const text = value => String(value ?? "").trim();
   const normalize = value => text(value).toLowerCase().replace(/\s+/g, " ");
@@ -670,17 +670,32 @@
     if (showMessage) showToast("โหลดข้อมูลล่าสุดแล้ว");
   }
 
+  let lockedScrollY = 0;
+
   function openMobileFilters() {
     if (!isMobileView()) return;
+
+    lockedScrollY = window.scrollY || 0;
+    document.body.style.setProperty("--locked-scroll-y", `${lockedScrollY}px`);
     document.body.classList.add("filter-open");
+
     const button = $("mobileFilterBtn");
     if (button) button.setAttribute("aria-expanded", "true");
+
+    const firstInput = $("searchInput");
+    window.setTimeout(() => firstInput?.focus({ preventScroll: true }), 180);
   }
 
   function closeMobileFilters() {
+    const wasOpen = document.body.classList.contains("filter-open");
     document.body.classList.remove("filter-open");
+
     const button = $("mobileFilterBtn");
     if (button) button.setAttribute("aria-expanded", "false");
+
+    if (wasOpen) {
+      window.scrollTo(0, lockedScrollY);
+    }
   }
 
   function render() {
@@ -697,7 +712,10 @@
     [
       "departmentFilter", "hazardFilter", "ppeFilter", "reviewFilter"
     ].forEach(id => {
-      $(id).addEventListener("change", () => applyFilters());
+      $(id).addEventListener("change", () => {
+        applyFilters();
+        if (isMobileView()) closeMobileFilters();
+      });
     });
 
     $("clearFilters").addEventListener("click", () => {
