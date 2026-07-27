@@ -1,0 +1,3 @@
+window.CHEMICAL_APP_CONFIG = {
+  PAGE_SIZE: 20
+};
