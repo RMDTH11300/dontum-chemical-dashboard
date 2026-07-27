@@ -5,6 +5,7 @@
   const DATA = Array.isArray(window.CHEMICAL_DATA) ? window.CHEMICAL_DATA : [];
   const SOURCE = window.CHEMICAL_SOURCE_SUMMARY || {};
   const IMAGE_MAP = window.CHEMICAL_IMAGE_MAP || {};
+  const IMAGE_DATA = window.CHEMICAL_IMAGE_DATA || {};
 
   const state = {
     rows: [], filtered: [], page: 1, charts: {}, galleryHidden: false
@@ -119,14 +120,15 @@
   function imageForRow(row) {
     const imageId = IMAGE_MAP[row.id];
     const expectedCode = imageId ? `SDS-CHEM-${imageId}` : "";
+    const imageSource = imageId ? IMAGE_DATA[imageId] : "";
 
-    // แสดงภาพเฉพาะเมื่อ Chemical ID, SDS Code และเลขภาพตรงกัน
-    if (!imageId || row.sdsCode !== expectedCode) return null;
+    // แสดงภาพเฉพาะเมื่อ Chemical ID, SDS Code และข้อมูลภาพตรงกัน
+    if (!imageId || row.sdsCode !== expectedCode || !imageSource) return null;
 
     return {
       id: imageId,
       sdsCode: expectedCode,
-      path: `assets/chemical-images/chemical-${imageId}.webp`
+      path: imageSource
     };
   }
 

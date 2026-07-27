@@ -94,3 +94,1353 @@ footer{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:7px 0 
 .sds-library-card-no-thumbnail .btn{margin-top:3px}
 .chemical-detail-body.detail-only{grid-template-columns:minmax(0,1fr)}
 .chemical-detail-body.detail-only .detail-information{max-width:850px;width:100%;margin:0 auto}
+
+/* แก้ไขชื่อสารเคมีและความตรงกันของตาราง */
+.chemical-name-text{
+  display:block;
+  color:var(--navy);
+  font-weight:900;
+  line-height:1.45;
+}
+.chemical-card-title-static{
+  margin:0;
+  color:var(--navy);
+  font-size:.94rem;
+  line-height:1.45;
+  font-weight:900;
+}
+.detail-image-wrap[hidden]{
+  display:none !important;
+}
+.table-panel table{
+  min-width:1450px;
+}
+.table-panel th:nth-child(1),
+.table-panel td:nth-child(1){width:55px;min-width:55px}
+.table-panel th:nth-child(2),
+.table-panel td:nth-child(2){width:115px;min-width:115px}
+.table-panel th:nth-child(3),
+.table-panel td:nth-child(3){width:85px;min-width:85px}
+.table-panel th:nth-child(4),
+.table-panel td:nth-child(4){width:310px;min-width:310px}
+.table-panel th:nth-child(5),
+.table-panel td:nth-child(5){width:85px;min-width:85px;text-align:center}
+.table-panel th:nth-child(6),
+.table-panel td:nth-child(6){width:105px;min-width:105px}
+.table-panel th:nth-child(7),
+.table-panel td:nth-child(7){width:165px;min-width:165px}
+.table-panel th:nth-child(8),
+.table-panel td:nth-child(8){width:210px;min-width:210px}
+.table-panel th:nth-child(9),
+.table-panel td:nth-child(9){width:240px;min-width:240px}
+.table-panel th:nth-child(10),
+.table-panel td:nth-child(10){width:190px;min-width:190px}
+
+/* WI-CHEM-001 Quick Reference */
+.kpi-card.warning-card .icon{background:#fff2d8;color:#9a5b00}
+.card-highlight{padding:9px 10px;border-radius:9px;font-size:.74rem;line-height:1.5}
+.danger-highlight{background:#fff0ee;color:#902017}
+.detail-paragraph{margin:0;white-space:pre-line;line-height:1.65;font-size:.83rem}
+.detail-section.safe-section{background:#f0f8f3}
+.detail-section.first-aid-section{background:#eef6fb}
+.detail-section.danger-section{background:#fff0ee}
+.detail-section.review-section{background:#fff6e5}
+.table-panel table{min-width:2600px}
+.table-panel th,.table-panel td{vertical-align:top}
+.table-panel th:nth-child(1),.table-panel td:nth-child(1){width:55px;min-width:55px}
+.table-panel th:nth-child(2),.table-panel td:nth-child(2){width:155px;min-width:155px}
+.table-panel th:nth-child(3),.table-panel td:nth-child(3){width:110px;min-width:110px}
+.table-panel th:nth-child(4),.table-panel td:nth-child(4){width:260px;min-width:260px}
+.table-panel th:nth-child(5),.table-panel td:nth-child(5){width:90px;min-width:90px;text-align:center}
+.table-panel th:nth-child(6),.table-panel td:nth-child(6){width:220px;min-width:220px}
+.table-panel th:nth-child(7),.table-panel td:nth-child(7){width:260px;min-width:260px}
+.table-panel th:nth-child(8),.table-panel td:nth-child(8){width:390px;min-width:390px}
+.table-panel th:nth-child(9),.table-panel td:nth-child(9){width:390px;min-width:390px}
+.table-panel th:nth-child(10),.table-panel td:nth-child(10){width:350px;min-width:350px}
+.table-panel th:nth-child(11),.table-panel td:nth-child(11){width:300px;min-width:300px}
+.long-text-cell{white-space:normal;line-height:1.6}
+.hazard-text-cell{color:#9a241b;font-weight:800;line-height:1.55}
+.safe-text{color:#236843}
+.danger-text{color:#9a241b}
+.review-status-cell{background:#fff9ed;color:#805000;line-height:1.55}
+.chemical-name-text{display:block;color:var(--navy);font-weight:900;line-height:1.45}
+.name-cell span{display:block;margin-top:4px;color:var(--muted);font-size:.72rem}
+.note.danger{background:#fff0ee}
+@media(max-width:650px){
+  .table-panel table{min-width:2400px}
+}
+
+
+/* เมนูและหน้าเกี่ยวกับระบบ */
+.nav-button.active{
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  border-color:rgba(255,255,255,.42);
+}
+.footer-link{
+  color:var(--blue);
+  font-weight:800;
+  text-decoration:none;
+}
+.footer-link:hover{text-decoration:underline}
+
+.about-page{min-height:100vh}
+.about-container{
+  width:100%;
+  max-width:1600px;
+  margin:0 auto;
+  padding:24px;
+}
+.about-page-title{margin-bottom:18px}
+.about-page-title h2{
+  margin:0 0 5px;
+  color:var(--navy);
+  font-size:1.55rem;
+}
+.about-page-title p{
+  margin:0;
+  color:var(--muted);
+}
+.about-hero{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  min-height:174px;
+  padding:28px 26px;
+  margin-bottom:18px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#143b68,#1e5b8e);
+  color:#fff;
+  box-shadow:0 10px 28px rgba(18,56,76,.17);
+}
+.about-logo{
+  flex:0 0 150px;
+  width:150px;
+  height:112px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border-radius:17px;
+  background:#fff;
+  color:var(--teal);
+  box-shadow:0 5px 18px rgba(0,0,0,.15);
+}
+.about-logo span{
+  font-size:2.7rem;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.05em;
+}
+.about-logo small{
+  margin-top:8px;
+  color:var(--navy);
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.about-hero-content{min-width:0}
+.about-eyebrow{
+  display:block;
+  margin-bottom:5px;
+  font-size:.73rem;
+  font-weight:900;
+  letter-spacing:.13em;
+  opacity:.9;
+}
+.about-hero h1{
+  margin:0;
+  font-size:2.55rem;
+  line-height:1.05;
+}
+.about-hero p{
+  margin:6px 0 12px;
+  line-height:1.55;
+  font-weight:700;
+}
+.version-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.version-badges span{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:5px 10px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  font-size:.74rem;
+  font-weight:800;
+}
+.about-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.about-card{
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.about-card h3{
+  margin:0 0 14px;
+  color:var(--navy);
+  font-size:1.05rem;
+}
+.about-paragraph,
+.about-card p{
+  margin:0;
+  color:var(--text);
+  line-height:1.75;
+}
+.system-info-list{margin:0}
+.system-info-list>div{
+  display:grid;
+  grid-template-columns:165px minmax(0,1fr);
+  gap:10px;
+  padding:9px 0;
+  border-bottom:1px solid #e7eef2;
+}
+.system-info-list>div:last-child{border-bottom:0}
+.system-info-list dt{
+  color:var(--navy);
+  font-weight:900;
+}
+.system-info-list dd{
+  margin:0;
+  line-height:1.55;
+}
+.about-list{
+  margin:0;
+  padding-left:20px;
+  line-height:1.75;
+}
+.about-warning-card{
+  border-color:#efd08d;
+  background:#fff7e8;
+}
+.about-strong-warning{
+  margin-top:14px !important;
+  color:#8d4b00 !important;
+  font-weight:900;
+}
+.about-emergency{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-top:16px;
+  padding:17px 19px;
+  border:1px solid #efb9b3;
+  border-radius:14px;
+  background:#fff0ee;
+  color:#851e17;
+  box-shadow:var(--shadow);
+}
+.about-emergency-icon{
+  flex:0 0 38px;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#b42318;
+  color:#fff;
+  font-size:1.15rem;
+  font-weight:900;
+}
+.about-emergency h3{
+  margin:0 0 5px;
+  color:#8f1d16;
+}
+.about-emergency p{
+  margin:0;
+  line-height:1.65;
+}
+.about-footer{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  padding:22px 0 10px;
+  color:var(--muted);
+  font-size:.78rem;
+}
+
+@media(max-width:820px){
+  .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  .about-container{padding:14px}
+  .about-hero{
+    align-items:flex-start;
+    flex-direction:column;
+    padding:20px;
+  }
+  .about-logo{
+    width:115px;
+    height:85px;
+    flex-basis:85px;
+  }
+  .about-logo span{font-size:2rem}
+  .about-hero h1{font-size:2rem}
+  .system-info-list>div{
+    grid-template-columns:1fr;
+    gap:4px;
+  }
+}
+
+
+/* รองรับสารเคมีที่ใช้ในหลายหน่วยงาน */
+.department-tag-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+}
+.department-tag-list.compact{
+  flex:1;
+  min-width:0;
+}
+.department-mini-button{
+  display:inline-flex;
+  align-items:center;
+  max-width:100%;
+  padding:4px 7px;
+  border:1px solid #c9dce3;
+  border-radius:999px;
+  background:#edf6f7;
+  color:var(--teal);
+  font-size:.68rem;
+  font-weight:800;
+  line-height:1.3;
+  text-align:left;
+}
+.department-mini-button:hover{
+  border-color:var(--navy);
+  background:var(--navy);
+  color:#fff;
+}
+.department-mini-button.compact{
+  padding:4px 7px;
+  font-size:.66rem;
+}
+.multi-department-cell{
+  min-width:210px;
+}
+.card-top-line{
+  align-items:flex-start;
+}
+.table-panel th:nth-child(2),
+.table-panel td:nth-child(2){
+  width:230px;
+  min-width:230px;
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE — Version 1.3.0
+   ========================================================= */
+html,body{max-width:100%;overflow-x:hidden}
+button,a,input,select{-webkit-tap-highlight-color:transparent}
+.mobile-filter-button,
+.mobile-close-button,
+.filter-backdrop{display:none}
+.sidebar-head-actions{display:flex;align-items:center;gap:7px}
+
+@media(max-width:820px){
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:900;
+    align-items:flex-start;
+    flex-direction:column;
+    gap:11px;
+    padding:12px 14px;
+  }
+  .brand{
+    width:100%;
+    align-items:center;
+    gap:10px;
+  }
+  .brand-mark{
+    flex:0 0 46px;
+    width:46px;
+    height:46px;
+    border-radius:13px;
+    font-size:.86rem;
+  }
+  .brand>div:last-child{min-width:0}
+  .eyebrow{
+    display:block;
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:.55rem;
+    letter-spacing:.07em;
+  }
+  .brand h1{
+    margin:3px 0 2px;
+    font-size:1.02rem;
+    line-height:1.25;
+  }
+  .brand p{font-size:.72rem}
+  .header-actions{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(92px,1fr));
+    width:100%;
+    gap:7px;
+  }
+  .header-actions .btn{
+    width:100%;
+    min-height:42px;
+    padding:8px 9px;
+    font-size:.76rem;
+  }
+  .mobile-filter-button{display:inline-flex}
+
+  .layout{
+    display:block;
+    min-height:auto;
+  }
+  .sidebar{
+    position:fixed;
+    inset:0 auto 0 0;
+    z-index:1300;
+    width:min(88vw,360px);
+    height:100dvh;
+    padding:16px;
+    border-right:0;
+    box-shadow:14px 0 38px rgba(8,28,39,.24);
+    transform:translateX(-105%);
+    transition:transform .24s ease;
+    overscroll-behavior:contain;
+  }
+  body.filter-open .sidebar{transform:translateX(0)}
+  .mobile-close-button{
+    display:grid;
+    place-items:center;
+    width:38px;
+    height:38px;
+    padding:0;
+    border:0;
+    border-radius:10px;
+    background:#e9f0f3;
+    color:var(--navy);
+    font-size:1.35rem;
+    line-height:1;
+  }
+  .filter-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:1250;
+    width:100%;
+    height:100%;
+    padding:0;
+    border:0;
+    background:rgba(8,28,39,.48);
+  }
+  body.filter-open .filter-backdrop{display:block}
+
+  .content{
+    width:100%;
+    padding:12px;
+  }
+  .page-title{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .page-title h2{font-size:1.25rem}
+  .page-title p{
+    font-size:.78rem;
+    line-height:1.45;
+  }
+  .page-title>.btn{
+    width:100%;
+    min-height:43px;
+  }
+  .status-banner{
+    margin-bottom:12px;
+    padding:11px 12px;
+    font-size:.77rem;
+    line-height:1.55;
+  }
+
+  .kpi-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    margin-bottom:12px;
+  }
+  .kpi-card{
+    min-height:82px;
+    gap:8px;
+    padding:11px;
+    border-radius:12px;
+  }
+  .kpi-card:last-child{grid-column:1/-1}
+  .icon{
+    flex:0 0 34px;
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    font-size:.84rem;
+  }
+  .kpi-card b{font-size:1.35rem}
+  .kpi-card small{
+    margin-top:4px;
+    font-size:.67rem;
+    line-height:1.3;
+  }
+
+  .panel{
+    border-radius:12px;
+    box-shadow:0 5px 18px rgba(17,52,70,.07);
+  }
+  .panel-head{
+    padding:14px 14px 0;
+  }
+  .panel-head h3{font-size:.94rem}
+  .panel-head p{
+    font-size:.73rem;
+    line-height:1.4;
+  }
+
+  .department-panel{
+    margin-bottom:12px;
+    padding-bottom:12px;
+  }
+  .department-buttons{
+    flex-wrap:nowrap;
+    gap:7px;
+    padding:12px 14px 4px;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    scrollbar-width:thin;
+    -webkit-overflow-scrolling:touch;
+  }
+  .department-button{
+    flex:0 0 auto;
+    min-height:40px;
+    padding:7px 10px;
+    scroll-snap-align:start;
+    font-size:.72rem;
+  }
+
+  .gallery-panel{
+    display:block;
+    margin-bottom:12px;
+    padding-bottom:12px;
+  }
+  .gallery-heading{
+    align-items:flex-start;
+  }
+  .gallery-heading #closeGallery{display:none}
+  .chemical-card-grid{
+    grid-template-columns:1fr;
+    gap:10px;
+    padding:12px;
+  }
+  .chemical-card{
+    border-radius:12px;
+  }
+  .chemical-card-no-thumbnail .chemical-card-body{
+    gap:9px;
+    padding:13px;
+  }
+  .card-top-line{
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .department-tag-list.compact{
+    flex:1 1 210px;
+  }
+  .image-availability{
+    flex:0 0 auto;
+  }
+  .chemical-card-title-static{
+    font-size:1rem;
+    line-height:1.45;
+  }
+  .card-data{
+    grid-template-columns:74px minmax(0,1fr);
+    gap:7px 8px;
+    font-size:.75rem;
+    line-height:1.55;
+  }
+  .card-data dd{
+    overflow-wrap:anywhere;
+  }
+  .card-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .card-actions .btn{
+    width:100%;
+    min-height:42px;
+  }
+
+  .chart-grid{
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-bottom:12px;
+  }
+  .chart-box{
+    height:270px;
+    padding:8px 10px 14px;
+  }
+
+  /* บนมือถือใช้การ์ดแทนตารางกว้าง 11 คอลัมน์ */
+  .table-panel{display:none}
+
+  footer{
+    gap:5px;
+    padding:10px 6px 18px;
+    font-size:.68rem;
+    line-height:1.5;
+    text-align:center;
+  }
+  .toast{
+    right:12px;
+    bottom:12px;
+    left:12px;
+    max-width:none;
+    font-size:.78rem;
+  }
+
+  .modal{
+    align-items:stretch;
+    padding:0;
+  }
+  .modal-card,
+  .chemical-detail-card{
+    width:100%;
+    height:100dvh;
+    max-height:none;
+    border-radius:0;
+  }
+  .modal-head{
+    min-height:58px;
+    padding:10px 12px;
+  }
+  .modal-head h3{
+    padding-right:8px;
+    font-size:.95rem;
+    line-height:1.35;
+  }
+  .close-button{
+    flex:0 0 42px;
+    width:42px;
+    height:42px;
+  }
+  .chemical-detail-body,
+  .chemical-detail-body.detail-only{
+    display:block;
+    padding:12px;
+  }
+  .detail-image-wrap{
+    min-height:0;
+    max-height:none;
+    margin-bottom:12px;
+    border-radius:9px;
+    overflow:auto;
+  }
+  .detail-image-wrap img{
+    width:100%;
+    max-height:none;
+    object-fit:contain;
+  }
+  .detail-information{
+    gap:9px;
+  }
+  .detail-section{
+    padding:11px;
+    border-radius:9px;
+  }
+  .detail-section h4{
+    margin-bottom:7px;
+    font-size:.9rem;
+  }
+  .detail-grid{
+    grid-template-columns:92px minmax(0,1fr);
+    gap:7px 8px;
+    font-size:.76rem;
+  }
+  .detail-paragraph{
+    font-size:.77rem;
+    line-height:1.65;
+    overflow-wrap:anywhere;
+  }
+  .detail-note{
+    font-size:.72rem;
+    line-height:1.55;
+  }
+
+  /* หน้าเกี่ยวกับระบบ */
+  .about-container{
+    padding:12px;
+  }
+  .about-page-title{
+    margin-bottom:12px;
+  }
+  .about-page-title h2{font-size:1.25rem}
+  .about-page-title p{
+    font-size:.76rem;
+    line-height:1.5;
+  }
+  .about-hero{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:14px;
+    min-height:0;
+    padding:17px;
+    margin-bottom:12px;
+    border-radius:13px;
+  }
+  .about-logo{
+    flex-basis:76px;
+    width:105px;
+    height:76px;
+    border-radius:12px;
+  }
+  .about-logo span{font-size:1.8rem}
+  .about-logo small{
+    margin-top:4px;
+    font-size:.62rem;
+  }
+  .about-eyebrow{
+    font-size:.58rem;
+    letter-spacing:.08em;
+  }
+  .about-hero h1{font-size:1.9rem}
+  .about-hero p{
+    font-size:.78rem;
+    line-height:1.55;
+  }
+  .version-badges{gap:6px}
+  .version-badges span{
+    min-height:26px;
+    padding:4px 8px;
+    font-size:.66rem;
+  }
+  .about-grid{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .about-card{
+    padding:14px;
+    border-radius:12px;
+  }
+  .about-card h3{
+    margin-bottom:10px;
+    font-size:.98rem;
+  }
+  .about-card p,
+  .about-paragraph,
+  .about-list{
+    font-size:.78rem;
+    line-height:1.65;
+  }
+  .system-info-list>div{
+    grid-template-columns:1fr;
+    gap:4px;
+    padding:8px 0;
+    font-size:.78rem;
+  }
+  .about-emergency{
+    gap:10px;
+    margin-top:10px;
+    padding:13px;
+    border-radius:12px;
+  }
+  .about-emergency-icon{
+    flex-basis:34px;
+    width:34px;
+    height:34px;
+  }
+  .about-emergency h3{font-size:.95rem}
+  .about-emergency p{
+    font-size:.77rem;
+    line-height:1.6;
+  }
+  .about-footer{
+    flex-direction:column;
+    gap:9px;
+    padding:16px 0 8px;
+  }
+  .about-footer .btn{
+    width:100%;
+    min-height:44px;
+  }
+}
+
+@media(max-width:420px){
+  .brand-mark{display:none}
+  .brand h1{font-size:.96rem}
+  .brand p{font-size:.68rem}
+  .header-actions{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .header-actions .btn{
+    padding:7px 5px;
+    font-size:.69rem;
+  }
+  .kpi-card{
+    min-height:78px;
+    padding:10px;
+  }
+  .kpi-card small{font-size:.63rem}
+  .department-mini-button{
+    font-size:.62rem;
+  }
+  .card-actions{
+    grid-template-columns:1fr;
+  }
+  .chart-box{height:250px}
+  .detail-grid{
+    grid-template-columns:82px minmax(0,1fr);
+  }
+}
+
+/* รองรับโทรศัพท์แนวนอน */
+@media(max-width:820px) and (orientation:landscape){
+  .topbar{position:relative}
+  .modal-card,
+  .chemical-detail-card{height:100dvh}
+  .chemical-detail-body{
+    display:grid;
+    grid-template-columns:minmax(280px,.9fr) minmax(320px,1.1fr);
+    gap:12px;
+  }
+  .chemical-detail-body.detail-only{
+    display:block;
+  }
+  .detail-image-wrap{
+    margin-bottom:0;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE PATCH — PHONE + TABLET + DESKTOP (v1.4.0)
+   ========================================================= */
+
+/* hidden ต้องชนะกฎ display อื่นเสมอ */
+[hidden],
+.gallery-panel[hidden]{
+  display:none !important;
+}
+
+/* ป้องกันองค์ประกอบกว้างดันหน้าเว็บบนทุกอุปกรณ์ */
+img,canvas,svg{
+  max-width:100%;
+}
+.content,
+.panel,
+.chart-grid,
+.table-wrap{
+  min-width:0;
+}
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* คอมพิวเตอร์และโน้ตบุ๊ก */
+@media(min-width:821px){
+  .mobile-filter-button,
+  .mobile-close-button,
+  .filter-backdrop{
+    display:none !important;
+  }
+
+  body.filter-open{
+    overflow:auto;
+  }
+
+  .layout{
+    display:grid;
+    grid-template-columns:minmax(250px,290px) minmax(0,1fr);
+    align-items:start;
+  }
+
+  .sidebar{
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    transform:none !important;
+  }
+
+  .content{
+    width:100%;
+    min-width:0;
+  }
+
+  .table-panel{
+    display:block;
+  }
+
+  .table-wrap{
+    border-radius:0 0 12px 12px;
+  }
+
+  .chemical-detail-card{
+    width:min(1180px,94vw);
+    max-height:92vh;
+  }
+
+  .detail-image-wrap img{
+    max-height:78vh;
+    width:auto;
+    margin-inline:auto;
+  }
+}
+
+/* จอคอมขนาดกลาง/โน้ตบุ๊ก */
+@media(min-width:821px) and (max-width:1280px){
+  .layout{
+    grid-template-columns:250px minmax(0,1fr);
+  }
+  .content{
+    padding:16px;
+  }
+  .kpi-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .kpi-card:nth-child(4),
+  .kpi-card:nth-child(5){
+    grid-column:auto;
+  }
+  .chart-grid{
+    grid-template-columns:1fr;
+  }
+  .chart-box{
+    height:340px;
+  }
+}
+
+/* โทรศัพท์และแท็บเล็ต */
+@media(max-width:820px){
+  .layout{
+    display:block;
+  }
+
+  /* ใช้การ์ดเป็นหน้าหลักบนจอเล็ก */
+  .gallery-panel{
+    display:block;
+  }
+  .table-panel{
+    display:none !important;
+  }
+
+  /* ไม่ให้กราฟกว้างเกินจอ */
+  .chart-box,
+  .chart-box canvas{
+    max-width:100%;
+  }
+
+  /* ปุ่มบนหัวเว็บแตะง่าย */
+  .header-actions a,
+  .header-actions button{
+    touch-action:manipulation;
+  }
+
+  /* ป้องกันข้อความยาวล้น */
+  .chemical-card,
+  .chemical-card-body,
+  .card-data dd,
+  .detail-section,
+  .detail-paragraph,
+  .system-info-list dd{
+    min-width:0;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+}
+
+/* โทรศัพท์จอเล็กมาก */
+@media(max-width:360px){
+  .content,
+  .about-container{
+    padding-inline:9px;
+  }
+  .header-actions{
+    gap:5px;
+  }
+  .header-actions .btn{
+    font-size:.64rem;
+    padding-inline:4px;
+  }
+  .kpi-grid{
+    grid-template-columns:1fr;
+  }
+  .kpi-card:last-child{
+    grid-column:auto;
+  }
+}
+
+/* จอใหญ่ */
+@media(min-width:1600px){
+  .content{
+    padding:24px 28px;
+  }
+  .chart-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .chemical-card-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+
+/* =========================================================
+   FIX FILTER DRAWER + RESPONSIVE BREAKPOINT — v1.5.0
+   ========================================================= */
+
+/* ป้องกันแผงตัวกรองทำให้หน้าหลักเลื่อนหรือเกิดพื้นที่ว่าง */
+@media(max-width:820px){
+  body.filter-open{
+    position:fixed;
+    inset:calc(var(--locked-scroll-y, 0px) * -1) 0 0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    touch-action:none;
+  }
+
+  body.filter-open .topbar,
+  body.filter-open .content{
+    pointer-events:none;
+    user-select:none;
+  }
+
+  .sidebar{
+    box-sizing:border-box;
+    width:min(88vw,340px);
+    max-width:calc(100vw - 38px);
+    height:100dvh;
+    min-height:100dvh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:#fff;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  body.filter-open .sidebar{
+    pointer-events:auto;
+    user-select:auto;
+  }
+
+  .filter-backdrop{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:1250;
+    width:100vw;
+    height:100dvh;
+    margin:0;
+    padding:0;
+    border:0;
+    border-radius:0;
+    background:rgba(4,20,31,.62);
+    opacity:0;
+    cursor:default;
+    transition:opacity .2s ease;
+  }
+
+  body.filter-open .filter-backdrop{
+    display:block;
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .sidebar-head{
+    position:sticky;
+    top:-16px;
+    z-index:2;
+    margin:-16px -16px 15px;
+    padding:15px 16px 12px;
+    background:#fff;
+    border-bottom:1px solid #e3ecef;
+  }
+
+  .mobile-close-button{
+    border:1px solid #b9cbd3;
+    background:#fff;
+    font-size:1.25rem;
+    font-weight:700;
+  }
+
+  /* เมื่อปิดตัวกรอง เนื้อหาต้องกลับมาเต็มความกว้าง */
+  .content{
+    margin:0;
+    max-width:none;
+  }
+
+  .kpi-grid{
+    width:100%;
+  }
+}
+
+/* คอมพิวเตอร์และโน้ตบุ๊ก: แสดง sidebar ปกติ ไม่ใช้ drawer */
+@media(min-width:821px){
+  body{
+    position:static !important;
+    inset:auto !important;
+    width:auto !important;
+    height:auto !important;
+    overflow-x:hidden;
+    overflow-y:auto;
+    touch-action:auto;
+  }
+
+  .sidebar{
+    width:auto;
+    max-width:none;
+  }
+
+  .filter-backdrop{
+    display:none !important;
+  }
+
+  .content{
+    max-width:none;
+  }
+}
+
+/* จอแท็บเล็ตช่วง 821–1050px ให้ตารางและกราฟไม่เบียดกัน */
+@media(min-width:821px) and (max-width:1050px){
+  .layout{
+    grid-template-columns:235px minmax(0,1fr);
+  }
+
+  .content{
+    padding:14px;
+  }
+
+  .kpi-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .kpi-card:last-child{
+    grid-column:1/-1;
+  }
+
+  .chart-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP ONLY — Version 1.6.0
+   ========================================================= */
+
+.desktop-only-notice{
+  display:none;
+}
+
+html,
+body{
+  min-width:1180px;
+}
+
+.layout{
+  display:grid !important;
+  grid-template-columns:280px minmax(0,1fr) !important;
+  align-items:start;
+  min-width:1180px;
+}
+
+.sidebar{
+  position:sticky !important;
+  top:0 !important;
+  width:auto !important;
+  max-width:none !important;
+  height:100vh !important;
+  min-height:100vh !important;
+  transform:none !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  box-shadow:none !important;
+}
+
+.mobile-filter-button,
+.mobile-close-button,
+.filter-backdrop{
+  display:none !important;
+}
+
+.content{
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:20px !important;
+  pointer-events:auto !important;
+}
+
+.table-panel{
+  display:block !important;
+}
+
+.gallery-panel[hidden]{
+  display:none !important;
+}
+
+.chart-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+
+.kpi-grid{
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+}
+
+.topbar{
+  position:relative !important;
+  flex-direction:row !important;
+}
+
+.header-actions{
+  display:flex !important;
+  width:auto !important;
+}
+
+.chemical-detail-card{
+  width:min(1180px,94vw) !important;
+  height:auto !important;
+  max-height:92vh !important;
+  border-radius:16px !important;
+}
+
+.table-wrap{
+  overflow-x:auto !important;
+}
+
+/* หน้าจอเล็ก: ไม่แสดงระบบ ให้แจ้งเปิดผ่านคอมพิวเตอร์ */
+@media(max-width:1023px){
+  html,
+  body{
+    min-width:0 !important;
+    width:100% !important;
+    overflow:hidden !important;
+  }
+
+  body > *:not(.desktop-only-notice){
+    display:none !important;
+  }
+
+  .desktop-only-notice{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:grid;
+    place-items:center;
+    padding:24px;
+    background:linear-gradient(135deg,#eef5f7,#dcebf0);
+  }
+
+  .desktop-only-card{
+    width:min(92vw,520px);
+    padding:30px 24px;
+    border:1px solid #c9dce3;
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 18px 48px rgba(18,56,76,.18);
+    text-align:center;
+  }
+
+  .desktop-only-icon{
+    margin-bottom:12px;
+    font-size:3rem;
+  }
+
+  .desktop-only-card h1{
+    margin:0 0 12px;
+    color:#12384c;
+    font-size:1.35rem;
+    line-height:1.45;
+  }
+
+  .desktop-only-card p{
+    margin:0;
+    color:#526b78;
+    font-size:.95rem;
+    line-height:1.7;
+  }
+}
+
+
+/* =========================================================
+   LOGO + ABOUT PAGE REFRESH — Version 1.8.0
+   ========================================================= */
+.brand{align-items:center;gap:16px}
+.brand-logo-stack{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand-logo-card{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 20px rgba(0,0,0,.08)}
+.brand-logo-card.primary{width:72px;height:72px;border-radius:20px;padding:10px;background:#fff}
+.brand-logo-card.secondary{width:60px;height:60px;border-radius:50%;padding:6px;background:#fff}
+.brand-logo-card img{display:block;max-width:100%;max-height:100%;object-fit:contain}
+.brand-mark{display:none !important}
+.eyebrow{letter-spacing:.12em}
+.brand h1{text-shadow:0 1px 0 rgba(0,0,0,.08)}
+
+.about-page-title{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:0 2px 4px}
+.about-page-title h2{font-size:1.72rem}
+.about-page-title p{max-width:860px;line-height:1.6}
+.about-hero{position:relative;align-items:stretch;gap:28px;min-height:260px;padding:32px 32px 28px;border:1px solid rgba(255,255,255,.16);border-radius:22px;background:
+  radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 28%),
+  radial-gradient(circle at bottom left, rgba(255,255,255,.08), transparent 34%),
+  linear-gradient(135deg,#0e2f49 0%, #154d74 46%, #1a7b83 100%);
+  box-shadow:0 18px 42px rgba(18,56,76,.18)}
+.about-hero::after{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.10);border-radius:18px;pointer-events:none}
+.about-hero-logos{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:16px;flex:0 0 310px}
+.hero-logo-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:118px;padding:18px;border-radius:20px;background:rgba(255,255,255,.97);box-shadow:0 12px 28px rgba(2,18,27,.16)}
+.hero-logo-card img{display:block;max-width:100%;max-height:88px;object-fit:contain}
+.hero-logo-card.hospital img{max-height:82px}
+.hero-logo-card span{color:var(--navy);font-weight:900;letter-spacing:.03em;text-align:center}
+.about-hero-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.about-eyebrow{margin-bottom:8px;font-size:.76rem;opacity:.94}
+.about-hero h1{font-size:3rem;letter-spacing:.02em}
+.about-hero p{max-width:820px;margin:8px 0 14px;font-size:1rem;line-height:1.75;font-weight:700;color:rgba(255,255,255,.96)}
+.version-badges{margin-bottom:16px}
+.version-badges span{padding:6px 12px;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.12);backdrop-filter:blur(2px)}
+.hero-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:770px}
+.hero-highlight-item{padding:14px 16px;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.11);backdrop-filter:blur(2px)}
+.hero-highlight-item strong{display:block;margin-bottom:5px;color:#fff;font-size:1.35rem;line-height:1;font-weight:900}
+.hero-highlight-item span{display:block;color:rgba(255,255,255,.92);font-size:.84rem;line-height:1.5;font-weight:700}
+.about-grid{gap:18px;margin-top:4px}
+.about-card{padding:22px 22px 20px;border-radius:18px;border:1px solid #d7e5ea;box-shadow:0 12px 28px rgba(17,52,70,.08)}
+.about-card:nth-child(1){background:linear-gradient(180deg,#ffffff,#fbfdff)}
+.about-card:nth-child(2){background:linear-gradient(180deg,#ffffff,#f6fbff)}
+.about-card:nth-child(3){background:linear-gradient(180deg,#ffffff,#fbfffd)}
+.about-card h3{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #e6eef2;font-size:1.08rem}
+.about-card h3::before{content:"";width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));box-shadow:0 0 0 4px rgba(22,131,140,.12)}
+.system-info-list>div{grid-template-columns:170px minmax(0,1fr);padding:11px 0}
+.system-info-list dt{font-size:.95rem}
+.system-info-list dd{line-height:1.65}
+.about-list{padding-left:22px}
+.about-list li+li{margin-top:4px}
+.about-warning-card{border-color:#f0d4a0;background:linear-gradient(180deg,#fff9ed,#fff4de)}
+.about-warning-card h3::before{background:linear-gradient(135deg,#e5a832,#c87410);box-shadow:0 0 0 4px rgba(211,141,24,.12)}
+.about-strong-warning{padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.54)}
+.about-emergency{margin-top:18px;padding:20px 22px;border-radius:18px;border-color:#efc5bf;background:linear-gradient(180deg,#fff4f2,#ffefec)}
+.about-emergency-icon{box-shadow:0 8px 18px rgba(180,35,24,.18)}
+.about-footer{padding-top:24px}
+
+@media(min-width:821px) and (max-width:1360px){
+  .about-hero{gap:22px;padding:28px}
+  .about-hero-logos{flex-basis:265px}
+  .hero-highlights{max-width:none}
+}

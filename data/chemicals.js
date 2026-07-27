@@ -1,35 +1,30 @@
 window.CHEMICAL_SOURCE_SUMMARY = {
-  "sourceFile": "WI-CHEM-001_Quick_Reference_สารเคมี_96_รายการ(1).xlsx",
-  "imageSourceFile": "สารเคมี.zip",
+  "sourceFile": "WI-CHEM-001_Quick_Reference_สารเคมี_96_รายการ(2).xlsx",
   "recordCount": 96,
-  "departmentCount": 26,
-  "hazardGroupCount": 19,
+  "departmentCount": 22,
+  "hazardGroupCount": 2,
   "departments": [
-    "IC/บริหารกลาง (เสนอให้ยืนยัน)",
-    "IC/ห้องยา/หน่วยใช้กลาง",
-    "LAB",
-    "LAB/พยาธิ/หน่วยงานที่ใช้",
+    "ER",
+    "IPD",
+    "LR",
     "OPD",
-    "OPD/หน่วยตรวจ",
-    "OPD/แม่บ้าน",
-    "Skin/ห้องผ่าตัด",
-    "x-ray",
-    "จ่ายกลาง (CSSD)",
+    "กลุ่มงานปฐมภูมิ (งานประปา)",
+    "กลุ่มงานปฐมภูมิ(งานประปา)",
+    "กายภาพบำบัด",
+    "กิจกรรมบำบัด",
+    "ขาเทียม",
+    "งานผลิต",
+    "จ่ายกลางและซักฟอก",
     "ช่าง",
     "ทันตกรรม",
-    "บริหาร",
-    "บริหาร/แม่บ้าน",
-    "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)",
-    "บริหาร/แม่บ้าน/ซักฟอก (เสนอให้ยืนยัน)",
-    "ปฐมภูมิ",
-    "ผลิต",
-    "ผลิต/หน่วยใช้กลาง",
-    "ห้องปฏิบัติการ (LAB)",
+    "บริหาร (จัดซื้อ)",
+    "ฝังเข็ม",
+    "ห้อง Skin",
+    "ห้อง X-ray",
     "ห้องยา",
-    "ห้องยา (เสนอให้ยืนยัน)",
-    "ห้องยา/หน่วยใช้กลาง",
-    "แม่บ้าน/บริหาร",
+    "ห้องแล็บ",
     "โภชนาการ",
+    "โภชนาการการ",
     "ไตเทียม"
   ],
   "guide": {
@@ -46,14 +41,12 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-001",
     "sdsCode": "SDS-CHEM-001",
-    "qrCode": "QR-CHEM-001",
-    "qrPath": "/SDS/SDS-CHEM-001.pdf",
     "chemicalName": "10% Sodium hypochlorite",
-    "department": "จ่ายกลาง (CSSD)",
+    "department": "ทันตกรรม",
     "departments": [
-      "จ่ายกลาง (CSSD)"
+      "ทันตกรรม"
     ],
-    "departmentText": "จ่ายกลาง (CSSD)",
+    "departmentText": "ทันตกรรม",
     "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
     "hazards": [
       "สารออกซิไดซ์",
@@ -74,19 +67,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-002",
     "sdsCode": "SDS-CHEM-002",
-    "qrCode": "QR-CHEM-002",
-    "qrPath": "/SDS/SDS-CHEM-002.pdf",
     "chemicalName": "17% EDTA",
-    "department": "ทันตกรรม",
+    "department": "ไตเทียม",
     "departments": [
-      "ทันตกรรม"
+      "ไตเทียม"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "สารคีเลต/ระคายเคือง",
-    "hazards": [
-      "สารคีเลต",
-      "ระคายเคือง"
-    ],
+    "departmentText": "ไตเทียม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -101,19 +89,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-003",
     "sdsCode": "SDS-CHEM-003",
-    "qrCode": "QR-CHEM-003",
-    "qrPath": "/SDS/SDS-CHEM-003.pdf",
     "chemicalName": "30% Citric acid",
-    "department": "ไตเทียม",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ไตเทียม"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ไตเทียม",
-    "hazardGroup": "กรด/สารกัดกร่อนหรือระคายเคือง",
-    "hazards": [
-      "กรด",
-      "สารกัดกร่อนหรือระคายเคือง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันกรด",
       "Chemical goggles",
@@ -129,18 +112,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-004",
     "sdsCode": "SDS-CHEM-004",
-    "qrCode": "QR-CHEM-004",
-    "qrPath": "/SDS/SDS-CHEM-004.pdf",
     "chemicalName": "30% KOH (Potassium Hydroxide)",
-    "department": "LAB",
+    "department": "ทันตกรรม",
     "departments": [
-      "LAB"
+      "ทันตกรรม"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "ด่างกัดกร่อน",
-    "hazards": [
-      "ด่างกัดกร่อน"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันด่าง",
       "Chemical goggles",
@@ -156,19 +135,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-005",
     "sdsCode": "SDS-CHEM-005",
-    "qrCode": "QR-CHEM-005",
-    "qrPath": "/SDS/SDS-CHEM-005.pdf",
     "chemicalName": "37% Phosphoric acid",
-    "department": "ทันตกรรม",
+    "department": "ห้อง X-ray",
     "departments": [
-      "ทันตกรรม"
+      "ห้อง X-ray"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "กรด/สารกัดกร่อนหรือระคายเคือง",
-    "hazards": [
-      "กรด",
-      "สารกัดกร่อนหรือระคายเคือง"
-    ],
+    "departmentText": "ห้อง X-ray",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันกรด",
       "Chemical goggles",
@@ -184,20 +158,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-006",
     "sdsCode": "SDS-CHEM-006",
-    "qrCode": "QR-CHEM-006",
-    "qrPath": "/SDS/SDS-CHEM-006.pdf",
     "chemicalName": "3rd generation quaternary ammonium compounds dual quats",
-    "department": "x-ray",
+    "department": "จ่ายกลางและซักฟอก",
     "departments": [
-      "x-ray"
+      "จ่ายกลางและซักฟอก"
     ],
-    "departmentText": "x-ray",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "จ่ายกลางและซักฟอก",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -212,19 +180,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-007",
     "sdsCode": "SDS-CHEM-007",
-    "qrCode": "QR-CHEM-007",
-    "qrPath": "/SDS/SDS-CHEM-007.pdf",
     "chemicalName": "50% Hydrogen peroxide",
-    "department": "จ่ายกลาง (CSSD)",
+    "department": "ไตเทียม",
     "departments": [
-      "จ่ายกลาง (CSSD)"
+      "ไตเทียม"
     ],
-    "departmentText": "จ่ายกลาง (CSSD)",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "ไตเทียม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันสารเคมี",
       "Chemical goggles",
@@ -240,19 +203,27 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-008",
     "sdsCode": "SDS-CHEM-008",
-    "qrCode": "QR-CHEM-008",
-    "qrPath": "/SDS/SDS-CHEM-008.pdf",
     "chemicalName": "5.25% Sodium Hypochlorite",
-    "department": "ไตเทียม",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ไตเทียม"
+      "ห้องแล็บ",
+      "ทันตกรรม",
+      "ห้อง X-ray",
+      "OPD",
+      "ห้องยา",
+      "ER",
+      "LR",
+      "IPD",
+      "ไตเทียม",
+      "งานผลิต",
+      "กลุ่มงานปฐมภูมิ(งานประปา)",
+      "ห้อง Skin",
+      "ฝังเข็ม",
+      "กิจกรรมบำบัด"
     ],
-    "departmentText": "ไตเทียม",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "ห้องแล็บ | ทันตกรรม | ห้อง X-ray | OPD | ห้องยา | ER | LR | IPD | ไตเทียม | งานผลิต | กลุ่มงานปฐมภูมิ(งานประปา) | ห้อง Skin | ฝังเข็ม | กิจกรรมบำบัด",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Chemical goggles",
@@ -268,18 +239,18 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-009",
     "sdsCode": "SDS-CHEM-009",
-    "qrCode": "QR-CHEM-009",
-    "qrPath": "/SDS/SDS-CHEM-009.pdf",
     "chemicalName": "70% Alcohol",
-    "department": "x-ray",
+    "department": "ห้องแล็บ",
     "departments": [
-      "x-ray"
+      "ห้องแล็บ",
+      "OPD",
+      "กิจกรรมบำบัด",
+      "กายภาพบำบัด"
     ],
-    "departmentText": "x-ray",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
+    "departmentText": "ห้องแล็บ | OPD | กิจกรรมบำบัด | กายภาพบำบัด",
+    "hazardGroup": "กลุ่มงานปฐมภูมิ",
     "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
+      "กลุ่มงานปฐมภูมิ"
     ],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
@@ -296,19 +267,19 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-010",
     "sdsCode": "SDS-CHEM-010",
-    "qrCode": "QR-CHEM-010",
-    "qrPath": "/SDS/SDS-CHEM-010.pdf",
     "chemicalName": "70% Ethanol Cotton Ball",
-    "department": "ห้องยา",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ห้องยา"
+      "ห้องแล็บ",
+      "ทันตกรรม",
+      "OPD",
+      "งานผลิต",
+      "กลุ่มงานปฐมภูมิ (งานประปา)",
+      "ฝังเข็ม"
     ],
-    "departmentText": "ห้องยา",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ห้องแล็บ | ทันตกรรม | OPD | งานผลิต | กลุ่มงานปฐมภูมิ (งานประปา) | ฝังเข็ม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -324,19 +295,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-011",
     "sdsCode": "SDS-CHEM-011",
-    "qrCode": "QR-CHEM-011",
-    "qrPath": "/SDS/SDS-CHEM-011.pdf",
     "chemicalName": "95% Alcohol",
-    "department": "ห้องยา (เสนอให้ยืนยัน)",
+    "department": "บริหาร (จัดซื้อ)",
     "departments": [
-      "ห้องยา (เสนอให้ยืนยัน)"
+      "บริหาร (จัดซื้อ)"
     ],
-    "departmentText": "ห้องยา (เสนอให้ยืนยัน)",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "บริหาร (จัดซื้อ)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -352,19 +318,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-012",
     "sdsCode": "SDS-CHEM-012",
-    "qrCode": "QR-CHEM-012",
-    "qrPath": "/SDS/SDS-CHEM-012.pdf",
     "chemicalName": "ก้อนหอมดับกลิ่น (Deodorizer Block)",
-    "department": "บริหาร",
+    "department": "ช่าง",
     "departments": [
-      "บริหาร"
+      "ช่าง"
     ],
-    "departmentText": "บริหาร",
-    "hazardGroup": "สารให้กลิ่น/อาจระคายเคืองหรือไวไฟ",
-    "hazards": [
-      "สารให้กลิ่น",
-      "อาจระคายเคืองหรือไวไฟ"
-    ],
+    "departmentText": "ช่าง",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -379,19 +340,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-013",
     "sdsCode": "SDS-CHEM-013",
-    "qrCode": "QR-CHEM-013",
-    "qrPath": "/SDS/SDS-CHEM-013.pdf",
     "chemicalName": "กาวทาท่อน้ำ",
     "department": "ช่าง",
     "departments": [
       "ช่าง"
     ],
     "departmentText": "ช่าง",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -407,20 +363,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-014",
     "sdsCode": "SDS-CHEM-014",
-    "qrCode": "QR-CHEM-014",
-    "qrPath": "/SDS/SDS-CHEM-014.pdf",
     "chemicalName": "จารบี",
     "department": "ช่าง",
     "departments": [
       "ช่าง"
     ],
     "departmentText": "ช่าง",
-    "hazardGroup": "น้ำมัน/ไข/สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง",
-    "hazards": [
-      "น้ำมัน",
-      "ไข",
-      "สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง"
-    ],
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -435,19 +385,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-015",
     "sdsCode": "SDS-CHEM-015",
-    "qrCode": "QR-CHEM-015",
-    "qrPath": "/SDS/SDS-CHEM-015.pdf",
     "chemicalName": "ทินเนอร์",
     "department": "ช่าง",
     "departments": [
       "ช่าง"
     ],
     "departmentText": "ช่าง",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -463,20 +408,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-016",
     "sdsCode": "SDS-CHEM-016",
-    "qrCode": "QR-CHEM-016",
-    "qrPath": "/SDS/SDS-CHEM-016.pdf",
     "chemicalName": "น้ำมันเครื่อง",
-    "department": "ช่าง",
+    "department": "บริหาร (จัดซื้อ)",
     "departments": [
-      "ช่าง"
+      "บริหาร (จัดซื้อ)"
     ],
-    "departmentText": "ช่าง",
-    "hazardGroup": "น้ำมัน/ไข/สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง",
-    "hazards": [
-      "น้ำมัน",
-      "ไข",
-      "สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง"
-    ],
+    "departmentText": "บริหาร (จัดซื้อ)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -491,20 +430,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-017",
     "sdsCode": "SDS-CHEM-017",
-    "qrCode": "QR-CHEM-017",
-    "qrPath": "/SDS/SDS-CHEM-017.pdf",
     "chemicalName": "น้ำยาเช็ดกระจก (Glass Cleaner)",
-    "department": "บริหาร",
+    "department": "จ่ายกลางและซักฟอก",
     "departments": [
-      "บริหาร"
+      "จ่ายกลางและซักฟอก"
     ],
-    "departmentText": "บริหาร",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "จ่ายกลางและซักฟอก",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -519,20 +452,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-018",
     "sdsCode": "SDS-CHEM-018",
-    "qrCode": "QR-CHEM-018",
-    "qrPath": "/SDS/SDS-CHEM-018.pdf",
     "chemicalName": "น้ำยาปรับผ้านุ่ม",
-    "department": "จ่ายกลาง (CSSD)",
+    "department": "งานผลิต",
     "departments": [
-      "จ่ายกลาง (CSSD)"
+      "งานผลิต"
     ],
-    "departmentText": "จ่ายกลาง (CSSD)",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -547,19 +474,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-019",
     "sdsCode": "SDS-CHEM-019",
-    "qrCode": "QR-CHEM-019",
-    "qrPath": "/SDS/SDS-CHEM-019.pdf",
     "chemicalName": "น้ำยาผสมหมึกเครื่องปั๊มวันที่อิงค์เจ็ท Makeup / Butanone",
-    "department": "ผลิต",
+    "department": "ทันตกรรม",
     "departments": [
-      "ผลิต"
+      "ทันตกรรม"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -575,19 +497,17 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-020",
     "sdsCode": "SDS-CHEM-020",
-    "qrCode": "QR-CHEM-020",
-    "qrPath": "/SDS/SDS-CHEM-020.pdf",
     "chemicalName": "น้ำยาละลายวัสดุพิมพ์ปาก",
-    "department": "ทันตกรรม",
+    "department": "บริหาร (จัดซื้อ)",
     "departments": [
-      "ทันตกรรม"
+      "บริหาร (จัดซื้อ)",
+      "โภชนาการการ",
+      "กายภาพบำบัด",
+      "ขาเทียม"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "สารเคมีทั่วไป/ระคายเคือง",
-    "hazards": [
-      "สารเคมีทั่วไป",
-      "ระคายเคือง"
-    ],
+    "departmentText": "บริหาร (จัดซื้อ) | โภชนาการการ | กายภาพบำบัด | ขาเทียม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -602,20 +522,17 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-021",
     "sdsCode": "SDS-CHEM-021",
-    "qrCode": "QR-CHEM-021",
-    "qrPath": "/SDS/SDS-CHEM-021.pdf",
     "chemicalName": "น้ำยาล้างจาน (Dishwashing Liquid)",
-    "department": "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)",
+    "department": "บริหาร (จัดซื้อ)",
     "departments": [
-      "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)"
+      "บริหาร (จัดซื้อ)",
+      "โภชนาการ",
+      "กายภาพบำบัด",
+      "ขาเทียม"
     ],
-    "departmentText": "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "บริหาร (จัดซื้อ) | โภชนาการ | กายภาพบำบัด | ขาเทียม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -630,20 +547,16 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-022",
     "sdsCode": "SDS-CHEM-022",
-    "qrCode": "QR-CHEM-022",
-    "qrPath": "/SDS/SDS-CHEM-022.pdf",
     "chemicalName": "น้ำยาล้างมือ (Hand Soap)",
-    "department": "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)",
+    "department": "บริหาร (จัดซื้อ)",
     "departments": [
-      "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)"
+      "บริหาร (จัดซื้อ)",
+      "โภชนาการ",
+      "จ่ายกลางและซักฟอก"
     ],
-    "departmentText": "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "บริหาร (จัดซื้อ) | โภชนาการ | จ่ายกลางและซักฟอก",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -658,20 +571,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-023",
     "sdsCode": "SDS-CHEM-023",
-    "qrCode": "QR-CHEM-023",
-    "qrPath": "/SDS/SDS-CHEM-023.pdf",
     "chemicalName": "ผงซักฟอก (Detergent)",
-    "department": "บริหาร/แม่บ้าน/ซักฟอก (เสนอให้ยืนยัน)",
+    "department": "โภชนาการการ",
     "departments": [
-      "บริหาร/แม่บ้าน/ซักฟอก (เสนอให้ยืนยัน)"
+      "โภชนาการการ"
     ],
-    "departmentText": "บริหาร/แม่บ้าน/ซักฟอก (เสนอให้ยืนยัน)",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "โภชนาการการ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -686,18 +593,16 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-024",
     "sdsCode": "SDS-CHEM-024",
-    "qrCode": "QR-CHEM-024",
-    "qrPath": "/SDS/SDS-CHEM-024.pdf",
     "chemicalName": "โพรเพน (C3H8) / บิวเทน (C4H10)",
-    "department": "โภชนาการ",
+    "department": "บริหาร (จัดซื้อ)",
     "departments": [
-      "โภชนาการ"
+      "บริหาร (จัดซื้อ)",
+      "กายภาพบำบัด",
+      "ขาเทียม"
     ],
-    "departmentText": "โภชนาการ",
-    "hazardGroup": "ก๊าซไวไฟภายใต้ความดัน",
-    "hazards": [
-      "ก๊าซไวไฟภายใต้ความดัน"
-    ],
+    "departmentText": "บริหาร (จัดซื้อ) | กายภาพบำบัด | ขาเทียม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือ",
       "แว่นตา",
@@ -712,19 +617,18 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-025",
     "sdsCode": "SDS-CHEM-025",
-    "qrCode": "QR-CHEM-025",
-    "qrPath": "/SDS/SDS-CHEM-025.pdf",
     "chemicalName": "ยาฉีดยุง (Mosquito Spray)",
-    "department": "บริหาร",
+    "department": "OPD",
     "departments": [
-      "บริหาร"
+      "OPD",
+      "LR",
+      "บริหาร (จัดซื้อ)",
+      "กิจกรรมบำบัด",
+      "กายภาพบำบัด"
     ],
-    "departmentText": "บริหาร",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "OPD | LR | บริหาร (จัดซื้อ) | กิจกรรมบำบัด | กายภาพบำบัด",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -740,19 +644,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-026",
     "sdsCode": "SDS-CHEM-026",
-    "qrCode": "QR-CHEM-026",
-    "qrPath": "/SDS/SDS-CHEM-026.pdf",
     "chemicalName": "สเปรย์น้ำหอมปรับอากาศ",
-    "department": "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)",
+    "department": "ช่าง",
     "departments": [
-      "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)"
+      "ช่าง"
     ],
-    "departmentText": "บริหาร/แม่บ้าน (เสนอให้ยืนยัน)",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ช่าง",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -768,19 +667,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-027",
     "sdsCode": "SDS-CHEM-027",
-    "qrCode": "QR-CHEM-027",
-    "qrPath": "/SDS/SDS-CHEM-027.pdf",
     "chemicalName": "สีสเปรย์",
-    "department": "ช่าง",
+    "department": "งานผลิต",
     "departments": [
-      "ช่าง"
+      "งานผลิต"
     ],
-    "departmentText": "ช่าง",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -796,19 +690,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-028",
     "sdsCode": "SDS-CHEM-028",
-    "qrCode": "QR-CHEM-028",
-    "qrPath": "/SDS/SDS-CHEM-028.pdf",
     "chemicalName": "หมึกพิมพ์เครื่องปั๊มวันที่อิงค์เจ็ท Solvent ink",
-    "department": "ผลิต",
+    "department": "ทันตกรรม",
     "departments": [
-      "ผลิต"
+      "ทันตกรรม"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -824,19 +713,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-029",
     "sdsCode": "SDS-CHEM-029",
-    "qrCode": "QR-CHEM-029",
-    "qrPath": "/SDS/SDS-CHEM-029.pdf",
     "chemicalName": "อะมัลกัม (400 mg / 600 mg ต่อเม็ด)",
-    "department": "ทันตกรรม",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ทันตกรรม"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "สารเคมีทั่วไป/ระคายเคือง",
-    "hazards": [
-      "สารเคมีทั่วไป",
-      "ระคายเคือง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -851,19 +735,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-030",
     "sdsCode": "SDS-CHEM-030",
-    "qrCode": "QR-CHEM-030",
-    "qrPath": "/SDS/SDS-CHEM-030.pdf",
     "chemicalName": "Acetone (Gram stain Decolorized)",
-    "department": "ห้องปฏิบัติการ (LAB)",
+    "department": "ทันตกรรม",
     "departments": [
-      "ห้องปฏิบัติการ (LAB)"
+      "ทันตกรรม"
     ],
-    "departmentText": "ห้องปฏิบัติการ (LAB)",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -879,19 +758,19 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-031",
     "sdsCode": "SDS-CHEM-031",
-    "qrCode": "QR-CHEM-031",
-    "qrPath": "/SDS/SDS-CHEM-031.pdf",
     "chemicalName": "Acrylic Resin Liquid",
     "department": "ทันตกรรม",
     "departments": [
-      "ทันตกรรม"
+      "ทันตกรรม",
+      "OPD",
+      "ห้องยา",
+      "ห้อง Skin",
+      "กิจกรรมบำบัด",
+      "กายภาพบำบัด"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ทันตกรรม | OPD | ห้องยา | ห้อง Skin | กิจกรรมบำบัด | กายภาพบำบัด",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -907,19 +786,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-032",
     "sdsCode": "SDS-CHEM-032",
-    "qrCode": "QR-CHEM-032",
-    "qrPath": "/SDS/SDS-CHEM-032.pdf",
     "chemicalName": "Alcohol Hand Gel (4 OZ with Pump)",
-    "department": "IC/บริหารกลาง (เสนอให้ยืนยัน)",
+    "department": "จ่ายกลางและซักฟอก",
     "departments": [
-      "IC/บริหารกลาง (เสนอให้ยืนยัน)"
+      "จ่ายกลางและซักฟอก"
     ],
-    "departmentText": "IC/บริหารกลาง (เสนอให้ยืนยัน)",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "จ่ายกลางและซักฟอก",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -935,20 +809,18 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-033",
     "sdsCode": "SDS-CHEM-033",
-    "qrCode": "QR-CHEM-033",
-    "qrPath": "/SDS/SDS-CHEM-033.pdf",
     "chemicalName": "Alkyl Polyglycoside",
-    "department": "จ่ายกลาง (CSSD)",
+    "department": "ทันตกรรม",
     "departments": [
-      "จ่ายกลาง (CSSD)"
+      "ทันตกรรม",
+      "OPD",
+      "ห้องยา",
+      "IPD",
+      "กลุ่มงานปฐมภูมิ (งานประปา)"
     ],
-    "departmentText": "จ่ายกลาง (CSSD)",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "ทันตกรรม | OPD | ห้องยา | IPD | กลุ่มงานปฐมภูมิ (งานประปา)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -963,19 +835,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-034",
     "sdsCode": "SDS-CHEM-034",
-    "qrCode": "QR-CHEM-034",
-    "qrPath": "/SDS/SDS-CHEM-034.pdf",
     "chemicalName": "Ammonia Carbonate",
-    "department": "ห้องยา (เสนอให้ยืนยัน)",
+    "department": "OPD",
     "departments": [
-      "ห้องยา (เสนอให้ยืนยัน)"
+      "OPD"
     ],
-    "departmentText": "ห้องยา (เสนอให้ยืนยัน)",
-    "hazardGroup": "สารระคายเคือง/ปล่อยไอแอมโมเนีย",
-    "hazards": [
-      "สารระคายเคือง",
-      "ปล่อยไอแอมโมเนีย"
-    ],
+    "departmentText": "OPD",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือ",
       "Goggles",
@@ -990,20 +857,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-035",
     "sdsCode": "SDS-CHEM-035",
-    "qrCode": "QR-CHEM-035",
-    "qrPath": "/SDS/SDS-CHEM-035.pdf",
     "chemicalName": "Ammonium Lauryl Sulfate",
-    "department": "OPD",
+    "department": "จ่ายกลางและซักฟอก",
     "departments": [
-      "OPD"
+      "จ่ายกลางและซักฟอก"
     ],
-    "departmentText": "OPD",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "จ่ายกลางและซักฟอก",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1018,20 +879,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-036",
     "sdsCode": "SDS-CHEM-036",
-    "qrCode": "QR-CHEM-036",
-    "qrPath": "/SDS/SDS-CHEM-036.pdf",
     "chemicalName": "Amylase, Protease, Lipase",
-    "department": "จ่ายกลาง (CSSD)",
+    "department": "ทันตกรรม",
     "departments": [
-      "จ่ายกลาง (CSSD)"
+      "ทันตกรรม"
     ],
-    "departmentText": "จ่ายกลาง (CSSD)",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1046,20 +901,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-037",
     "sdsCode": "SDS-CHEM-037",
-    "qrCode": "QR-CHEM-037",
-    "qrPath": "/SDS/SDS-CHEM-037.pdf",
     "chemicalName": "Aniosyme DLT Plus",
-    "department": "ทันตกรรม",
+    "department": "จ่ายกลางและซักฟอก",
     "departments": [
-      "ทันตกรรม"
+      "จ่ายกลางและซักฟอก"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "จ่ายกลางและซักฟอก",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1074,19 +923,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-038",
     "sdsCode": "SDS-CHEM-038",
-    "qrCode": "QR-CHEM-038",
-    "qrPath": "/SDS/SDS-CHEM-038.pdf",
     "chemicalName": "Bacillus subtilis",
-    "department": "จ่ายกลาง (CSSD)",
+    "department": "งานผลิต",
     "departments": [
-      "จ่ายกลาง (CSSD)"
+      "งานผลิต"
     ],
-    "departmentText": "จ่ายกลาง (CSSD)",
-    "hazardGroup": "ชีววัตถุ/ตัวชี้วัดชีวภาพ",
-    "hazards": [
-      "ชีววัตถุ",
-      "ตัวชี้วัดชีวภาพ"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือ",
       "เสื้อคลุม",
@@ -1101,20 +945,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-039",
     "sdsCode": "SDS-CHEM-039",
-    "qrCode": "QR-CHEM-039",
-    "qrPath": "/SDS/SDS-CHEM-039.pdf",
     "chemicalName": "Beeswax",
-    "department": "ผลิต",
+    "department": "งานผลิต",
     "departments": [
-      "ผลิต"
+      "งานผลิต"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "น้ำมัน/ไข/สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง",
-    "hazards": [
-      "น้ำมัน",
-      "ไข",
-      "สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1129,19 +967,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-040",
     "sdsCode": "SDS-CHEM-040",
-    "qrCode": "QR-CHEM-040",
-    "qrPath": "/SDS/SDS-CHEM-040.pdf",
     "chemicalName": "Benzoic Acid",
-    "department": "ผลิต",
+    "department": "ห้องยา",
     "departments": [
-      "ผลิต"
+      "ห้องยา"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "กรด/สารกัดกร่อนหรือระคายเคือง",
-    "hazards": [
-      "กรด",
-      "สารกัดกร่อนหรือระคายเคือง"
-    ],
+    "departmentText": "ห้องยา",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันกรด",
       "Chemical goggles",
@@ -1157,20 +990,21 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-041",
     "sdsCode": "SDS-CHEM-041",
-    "qrCode": "QR-CHEM-041",
-    "qrPath": "/SDS/SDS-CHEM-041.pdf",
     "chemicalName": "Betadine Scrub 120 ml",
-    "department": "ห้องยา",
+    "department": "OPD",
     "departments": [
-      "ห้องยา"
+      "OPD",
+      "ห้องยา",
+      "ER",
+      "LR",
+      "IPD",
+      "ไตเทียม",
+      "กลุ่มงานปฐมภูมิ (งานประปา)",
+      "ห้อง Skin"
     ],
-    "departmentText": "ห้องยา",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "OPD | ห้องยา | ER | LR | IPD | ไตเทียม | กลุ่มงานปฐมภูมิ (งานประปา) | ห้อง Skin",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1185,20 +1019,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-042",
     "sdsCode": "SDS-CHEM-042",
-    "qrCode": "QR-CHEM-042",
-    "qrPath": "/SDS/SDS-CHEM-042.pdf",
     "chemicalName": "Betadine Solution 10% 30 ml, 60 ml",
-    "department": "ห้องยา",
+    "department": "งานผลิต",
     "departments": [
-      "ห้องยา"
+      "งานผลิต"
     ],
-    "departmentText": "ห้องยา",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1213,19 +1041,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-043",
     "sdsCode": "SDS-CHEM-043",
-    "qrCode": "QR-CHEM-043",
-    "qrPath": "/SDS/SDS-CHEM-043.pdf",
     "chemicalName": "Borneol flasks",
-    "department": "ผลิต",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ผลิต"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารอินทรีย์มีกลิ่น/อาจไวไฟหรือระคายเคือง",
-    "hazards": [
-      "สารอินทรีย์มีกลิ่น",
-      "อาจไวไฟหรือระคายเคือง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1240,19 +1063,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-044",
     "sdsCode": "SDS-CHEM-044",
-    "qrCode": "QR-CHEM-044",
-    "qrPath": "/SDS/SDS-CHEM-044.pdf",
     "chemicalName": "Buffer (Wright-Giemsa)",
-    "department": "LAB",
+    "department": "กลุ่มงานปฐมภูมิ (งานประปา)",
     "departments": [
-      "LAB"
+      "กลุ่มงานปฐมภูมิ (งานประปา)"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "สีย้อม/รีเอเจนต์ห้องปฏิบัติการ",
-    "hazards": [
-      "สีย้อม",
-      "รีเอเจนต์ห้องปฏิบัติการ"
-    ],
+    "departmentText": "กลุ่มงานปฐมภูมิ (งานประปา)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -1268,19 +1086,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-045",
     "sdsCode": "SDS-CHEM-045",
-    "qrCode": "QR-CHEM-045",
-    "qrPath": "/SDS/SDS-CHEM-045.pdf",
     "chemicalName": "Calcium hypochlorite 65%",
-    "department": "ปฐมภูมิ",
+    "department": "งานผลิต",
     "departments": [
-      "ปฐมภูมิ"
+      "งานผลิต"
     ],
-    "departmentText": "ปฐมภูมิ",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Chemical goggles",
@@ -1296,19 +1109,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-046",
     "sdsCode": "SDS-CHEM-046",
-    "qrCode": "QR-CHEM-046",
-    "qrPath": "/SDS/SDS-CHEM-046.pdf",
     "chemicalName": "Camphor",
-    "department": "ผลิต",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ผลิต"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารอินทรีย์มีกลิ่น/อาจไวไฟหรือระคายเคือง",
-    "hazards": [
-      "สารอินทรีย์มีกลิ่น",
-      "อาจไวไฟหรือระคายเคือง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1323,19 +1131,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-047",
     "sdsCode": "SDS-CHEM-047",
-    "qrCode": "QR-CHEM-047",
-    "qrPath": "/SDS/SDS-CHEM-047.pdf",
     "chemicalName": "Carbol fuchsin (AFB)",
-    "department": "LAB",
+    "department": "ทันตกรรม",
     "departments": [
-      "LAB"
+      "ทันตกรรม"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "สีย้อม/รีเอเจนต์ห้องปฏิบัติการ",
-    "hazards": [
-      "สีย้อม",
-      "รีเอเจนต์ห้องปฏิบัติการ"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -1351,20 +1154,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-048",
     "sdsCode": "SDS-CHEM-048",
-    "qrCode": "QR-CHEM-048",
-    "qrPath": "/SDS/SDS-CHEM-048.pdf",
     "chemicalName": "Cavicide",
-    "department": "ทันตกรรม",
+    "department": "งานผลิต",
     "departments": [
-      "ทันตกรรม"
+      "งานผลิต"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1379,19 +1176,16 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-049",
     "sdsCode": "SDS-CHEM-049",
-    "qrCode": "QR-CHEM-049",
-    "qrPath": "/SDS/SDS-CHEM-049.pdf",
     "chemicalName": "Cetyl alcohol",
-    "department": "ผลิต",
+    "department": "ER",
     "departments": [
-      "ผลิต"
+      "ER",
+      "ไตเทียม",
+      "ห้อง Skin"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ER | ไตเทียม | ห้อง Skin",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -1407,19 +1201,19 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-050",
     "sdsCode": "SDS-CHEM-050",
-    "qrCode": "QR-CHEM-050",
-    "qrPath": "/SDS/SDS-CHEM-050.pdf",
     "chemicalName": "Chlorhexidine 2% in Alcohol 70%",
-    "department": "IC/ห้องยา/หน่วยใช้กลาง",
+    "department": "ทันตกรรม",
     "departments": [
-      "IC/ห้องยา/หน่วยใช้กลาง"
+      "ทันตกรรม",
+      "ห้องยา",
+      "ER",
+      "LR",
+      "IPD",
+      "ห้อง Skin"
     ],
-    "departmentText": "IC/ห้องยา/หน่วยใช้กลาง",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ทันตกรรม | ห้องยา | ER | LR | IPD | ห้อง Skin",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -1435,20 +1229,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-051",
     "sdsCode": "SDS-CHEM-051",
-    "qrCode": "QR-CHEM-051",
-    "qrPath": "/SDS/SDS-CHEM-051.pdf",
     "chemicalName": "Chlorhexidine Scrub 4% / Hibi Scrub 500ml,100ml",
-    "department": "ห้องยา/หน่วยใช้กลาง",
+    "department": "ไตเทียม",
     "departments": [
-      "ห้องยา/หน่วยใช้กลาง"
+      "ไตเทียม"
     ],
-    "departmentText": "ห้องยา/หน่วยใช้กลาง",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "ไตเทียม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1463,19 +1251,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-052",
     "sdsCode": "SDS-CHEM-052",
-    "qrCode": "QR-CHEM-052",
-    "qrPath": "/SDS/SDS-CHEM-052.pdf",
     "chemicalName": "Citric acid-1-hydrate, Lactic acid, Malic acid",
-    "department": "ไตเทียม",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ไตเทียม"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ไตเทียม",
-    "hazardGroup": "กรด/สารกัดกร่อนหรือระคายเคือง",
-    "hazards": [
-      "กรด",
-      "สารกัดกร่อนหรือระคายเคือง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันกรด",
       "Chemical goggles",
@@ -1491,19 +1274,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-053",
     "sdsCode": "SDS-CHEM-053",
-    "qrCode": "QR-CHEM-053",
-    "qrPath": "/SDS/SDS-CHEM-053.pdf",
     "chemicalName": "Crystal violet (Gram stain)",
-    "department": "LAB",
+    "department": "ห้องแล็บ",
     "departments": [
-      "LAB"
+      "ห้องแล็บ"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "สีย้อม/รีเอเจนต์ห้องปฏิบัติการ",
-    "hazards": [
-      "สีย้อม",
-      "รีเอเจนต์ห้องปฏิบัติการ"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -1519,19 +1297,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-054",
     "sdsCode": "SDS-CHEM-054",
-    "qrCode": "QR-CHEM-054",
-    "qrPath": "/SDS/SDS-CHEM-054.pdf",
     "chemicalName": "Decolorized acid alcohol (AFB)",
-    "department": "LAB",
+    "department": "ทันตกรรม",
     "departments": [
-      "LAB"
+      "ทันตกรรม"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "กรด/สารกัดกร่อนหรือระคายเคือง",
-    "hazards": [
-      "กรด",
-      "สารกัดกร่อนหรือระคายเคือง"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันกรด",
       "Chemical goggles",
@@ -1547,19 +1320,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-055",
     "sdsCode": "SDS-CHEM-055",
-    "qrCode": "QR-CHEM-055",
-    "qrPath": "/SDS/SDS-CHEM-055.pdf",
     "chemicalName": "Developer (น้ำยาสร้างภาพบนฟิล์ม)",
     "department": "ทันตกรรม",
     "departments": [
       "ทันตกรรม"
     ],
     "departmentText": "ทันตกรรม",
-    "hazardGroup": "น้ำยาถ่ายภาพ/สารระคายเคือง",
-    "hazards": [
-      "น้ำยาถ่ายภาพ",
-      "สารระคายเคือง"
-    ],
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -1574,19 +1342,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-056",
     "sdsCode": "SDS-CHEM-056",
-    "qrCode": "QR-CHEM-056",
-    "qrPath": "/SDS/SDS-CHEM-056.pdf",
     "chemicalName": "Die Stone Type3",
     "department": "ทันตกรรม",
     "departments": [
       "ทันตกรรม"
     ],
     "departmentText": "ทันตกรรม",
-    "hazardGroup": "ผงแร่/ฝุ่นระคายเคือง",
-    "hazards": [
-      "ผงแร่",
-      "ฝุ่นระคายเคือง"
-    ],
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือ",
       "แว่นตา",
@@ -1601,19 +1364,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-057",
     "sdsCode": "SDS-CHEM-057",
-    "qrCode": "QR-CHEM-057",
-    "qrPath": "/SDS/SDS-CHEM-057.pdf",
     "chemicalName": "Die Stone Type4",
     "department": "ทันตกรรม",
     "departments": [
       "ทันตกรรม"
     ],
     "departmentText": "ทันตกรรม",
-    "hazardGroup": "ผงแร่/ฝุ่นระคายเคือง",
-    "hazards": [
-      "ผงแร่",
-      "ฝุ่นระคายเคือง"
-    ],
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือ",
       "แว่นตา",
@@ -1628,20 +1386,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-058",
     "sdsCode": "SDS-CHEM-058",
-    "qrCode": "QR-CHEM-058",
-    "qrPath": "/SDS/SDS-CHEM-058.pdf",
     "chemicalName": "Disinfectant Wipes",
-    "department": "ทันตกรรม",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ทันตกรรม"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1656,19 +1408,18 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-059",
     "sdsCode": "SDS-CHEM-059",
-    "qrCode": "QR-CHEM-059",
-    "qrPath": "/SDS/SDS-CHEM-059.pdf",
     "chemicalName": "Eosin Y (Wright-Giemsa)",
-    "department": "LAB",
+    "department": "LR",
     "departments": [
-      "LAB"
+      "LR",
+      "บริหาร (จัดซื้อ)",
+      "โภชนาการ",
+      "กลุ่มงานปฐมภูมิ (งานประปา)",
+      "OPD"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "สีย้อม/รีเอเจนต์ห้องปฏิบัติการ",
-    "hazards": [
-      "สีย้อม",
-      "รีเอเจนต์ห้องปฏิบัติการ"
-    ],
+    "departmentText": "LR | บริหาร (จัดซื้อ) | โภชนาการ | กลุ่มงานปฐมภูมิ (งานประปา) | OPD",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -1684,19 +1435,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-060",
     "sdsCode": "SDS-CHEM-060",
-    "qrCode": "QR-CHEM-060",
-    "qrPath": "/SDS/SDS-CHEM-060.pdf",
     "chemicalName": "Ethoxylated alcohol 9EO 3.000% w/w",
-    "department": "OPD",
+    "department": "ห้องยา",
     "departments": [
-      "OPD"
+      "ห้องยา"
     ],
-    "departmentText": "OPD",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ห้องยา",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -1712,19 +1458,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-061",
     "sdsCode": "SDS-CHEM-061",
-    "qrCode": "QR-CHEM-061",
-    "qrPath": "/SDS/SDS-CHEM-061.pdf",
     "chemicalName": "Ethoxylated alcohol (9EO) 3.00% w/w",
-    "department": "แม่บ้าน/บริหาร",
+    "department": "ทันตกรรม",
     "departments": [
-      "แม่บ้าน/บริหาร"
+      "ทันตกรรม"
     ],
-    "departmentText": "แม่บ้าน/บริหาร",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -1740,19 +1481,15 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-062",
     "sdsCode": "SDS-CHEM-062",
-    "qrCode": "QR-CHEM-062",
-    "qrPath": "/SDS/SDS-CHEM-062.pdf",
     "chemicalName": "Ethyl chloride spray",
-    "department": "ห้องยา",
+    "department": "ER",
     "departments": [
-      "ห้องยา"
+      "ER",
+      "ห้อง Skin"
     ],
-    "departmentText": "ห้องยา",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ER | ห้อง Skin",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -1768,19 +1505,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-063",
     "sdsCode": "SDS-CHEM-063",
-    "qrCode": "QR-CHEM-063",
-    "qrPath": "/SDS/SDS-CHEM-063.pdf",
     "chemicalName": "Fixer (น้ำยาคงสภาพภาพบนฟิล์ม)",
-    "department": "ทันตกรรม",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ทันตกรรม"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "น้ำยาถ่ายภาพ/สารระคายเคือง",
-    "hazards": [
-      "น้ำยาถ่ายภาพ",
-      "สารระคายเคือง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -1795,20 +1527,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-064",
     "sdsCode": "SDS-CHEM-064",
-    "qrCode": "QR-CHEM-064",
-    "qrPath": "/SDS/SDS-CHEM-064.pdf",
     "chemicalName": "Formalin (Formaldehyde 37%)",
-    "department": "LAB/พยาธิ/หน่วยงานที่ใช้",
+    "department": "งานผลิต",
     "departments": [
-      "LAB/พยาธิ/หน่วยงานที่ใช้"
+      "งานผลิต"
     ],
-    "departmentText": "LAB/พยาธิ/หน่วยงานที่ใช้",
-    "hazardGroup": "สารพิษ/สารก่อมะเร็ง/ระคายเคือง",
-    "hazards": [
-      "สารพิษ",
-      "สารก่อมะเร็ง",
-      "ระคายเคือง"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์ 2 ชั้น",
       "Goggles",
@@ -1825,19 +1551,18 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-065",
     "sdsCode": "SDS-CHEM-065",
-    "qrCode": "QR-CHEM-065",
-    "qrPath": "/SDS/SDS-CHEM-065.pdf",
     "chemicalName": "Gram iodine (Gram stain)",
-    "department": "LAB",
+    "department": "LR",
     "departments": [
-      "LAB"
+      "LR",
+      "IPD",
+      "บริหาร (จัดซื้อ)",
+      "โภชนาการ",
+      "กลุ่มงานปฐมภูมิ (งานประปา)"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "สีย้อม/รีเอเจนต์ห้องปฏิบัติการ",
-    "hazards": [
-      "สีย้อม",
-      "รีเอเจนต์ห้องปฏิบัติการ"
-    ],
+    "departmentText": "LR | IPD | บริหาร (จัดซื้อ) | โภชนาการ | กลุ่มงานปฐมภูมิ (งานประปา)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -1853,20 +1578,17 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-066",
     "sdsCode": "SDS-CHEM-066",
-    "qrCode": "QR-CHEM-066",
-    "qrPath": "/SDS/SDS-CHEM-066.pdf",
     "chemicalName": "Hard paraffin",
-    "department": "ผลิต",
+    "department": "ทันตกรรม",
     "departments": [
-      "ผลิต"
+      "ทันตกรรม",
+      "ห้องยา",
+      "ER",
+      "IPD"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "น้ำมัน/ไข/สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง",
-    "hazards": [
-      "น้ำมัน",
-      "ไข",
-      "สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง"
-    ],
+    "departmentText": "ทันตกรรม | ห้องยา | ER | IPD",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1881,19 +1603,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-067",
     "sdsCode": "SDS-CHEM-067",
-    "qrCode": "QR-CHEM-067",
-    "qrPath": "/SDS/SDS-CHEM-067.pdf",
     "chemicalName": "Hydrochloric acid 15% w/w + Ethoxylated alcohol 2.0% w/w",
-    "department": "แม่บ้าน/บริหาร",
+    "department": "OPD",
     "departments": [
-      "แม่บ้าน/บริหาร"
+      "OPD"
     ],
-    "departmentText": "แม่บ้าน/บริหาร",
-    "hazardGroup": "กรด/สารกัดกร่อนหรือระคายเคือง",
-    "hazards": [
-      "กรด",
-      "สารกัดกร่อนหรือระคายเคือง"
-    ],
+    "departmentText": "OPD",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันกรด",
       "Chemical goggles",
@@ -1909,19 +1626,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-068",
     "sdsCode": "SDS-CHEM-068",
-    "qrCode": "QR-CHEM-068",
-    "qrPath": "/SDS/SDS-CHEM-068.pdf",
     "chemicalName": "Hydrogen Peroxide 15 oz",
-    "department": "ห้องยา/หน่วยใช้กลาง",
+    "department": "ห้อง Skin",
     "departments": [
-      "ห้องยา/หน่วยใช้กลาง"
+      "ห้อง Skin"
     ],
-    "departmentText": "ห้องยา/หน่วยใช้กลาง",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "ห้อง Skin",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันสารเคมี",
       "Chemical goggles",
@@ -1937,20 +1649,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-069",
     "sdsCode": "SDS-CHEM-069",
-    "qrCode": "QR-CHEM-069",
-    "qrPath": "/SDS/SDS-CHEM-069.pdf",
     "chemicalName": "Hydroxyethyl Cellulose",
     "department": "OPD",
     "departments": [
       "OPD"
     ],
     "departmentText": "OPD",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -1965,19 +1671,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-070",
     "sdsCode": "SDS-CHEM-070",
-    "qrCode": "QR-CHEM-070",
-    "qrPath": "/SDS/SDS-CHEM-070.pdf",
     "chemicalName": "Isopropyl Alcohol 70% (Sheets)",
-    "department": "Skin/ห้องผ่าตัด",
+    "department": "ห้อง Skin",
     "departments": [
-      "Skin/ห้องผ่าตัด"
+      "ห้อง Skin"
     ],
-    "departmentText": "Skin/ห้องผ่าตัด",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "ห้อง Skin",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -1993,19 +1694,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-071",
     "sdsCode": "SDS-CHEM-071",
-    "qrCode": "QR-CHEM-071",
-    "qrPath": "/SDS/SDS-CHEM-071.pdf",
     "chemicalName": "Linear alkyl benzene sulfonate / Linear alkyl benzyl sulfonate",
-    "department": "OPD/แม่บ้าน",
+    "department": "งานผลิต",
     "departments": [
-      "OPD/แม่บ้าน"
+      "งานผลิต"
     ],
-    "departmentText": "OPD/แม่บ้าน",
-    "hazardGroup": "สารเคมีทั่วไป/ระคายเคือง",
-    "hazards": [
-      "สารเคมีทั่วไป",
-      "ระคายเคือง"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2020,19 +1716,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-072",
     "sdsCode": "SDS-CHEM-072",
-    "qrCode": "QR-CHEM-072",
-    "qrPath": "/SDS/SDS-CHEM-072.pdf",
     "chemicalName": "Liquid Nitrogen (ไนโตรเจนเหลว)",
-    "department": "Skin/ห้องผ่าตัด",
+    "department": "งานผลิต",
     "departments": [
-      "Skin/ห้องผ่าตัด"
+      "งานผลิต"
     ],
-    "departmentText": "Skin/ห้องผ่าตัด",
-    "hazardGroup": "ก๊าซเหลวเย็นจัด/ทำให้ขาดออกซิเจน",
-    "hazards": [
-      "ก๊าซเหลวเย็นจัด",
-      "ทำให้ขาดออกซิเจน"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันความเย็นแบบหลวม",
       "Face shield",
@@ -2048,20 +1739,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-073",
     "sdsCode": "SDS-CHEM-073",
-    "qrCode": "QR-CHEM-073",
-    "qrPath": "/SDS/SDS-CHEM-073.pdf",
     "chemicalName": "Liquid paraffin",
-    "department": "ผลิต",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ผลิต"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "น้ำมัน/ไข/สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง",
-    "hazards": [
-      "น้ำมัน",
-      "ไข",
-      "สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2076,19 +1761,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-074",
     "sdsCode": "SDS-CHEM-074",
-    "qrCode": "QR-CHEM-074",
-    "qrPath": "/SDS/SDS-CHEM-074.pdf",
     "chemicalName": "Menthol",
-    "department": "ผลิต",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ผลิต"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารอินทรีย์มีกลิ่น/อาจไวไฟหรือระคายเคือง",
-    "hazards": [
-      "สารอินทรีย์มีกลิ่น",
-      "อาจไวไฟหรือระคายเคือง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2103,19 +1783,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-075",
     "sdsCode": "SDS-CHEM-075",
-    "qrCode": "QR-CHEM-075",
-    "qrPath": "/SDS/SDS-CHEM-075.pdf",
     "chemicalName": "Methyl alcohol (Wright-Giemsa)",
-    "department": "LAB",
+    "department": "งานผลิต",
     "departments": [
-      "LAB"
+      "งานผลิต"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -2131,19 +1806,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-076",
     "sdsCode": "SDS-CHEM-076",
-    "qrCode": "QR-CHEM-076",
-    "qrPath": "/SDS/SDS-CHEM-076.pdf",
     "chemicalName": "Methylene blue (Wright-Giemsa)",
-    "department": "LAB",
+    "department": "งานผลิต",
     "departments": [
-      "LAB"
+      "งานผลิต"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "สีย้อม/รีเอเจนต์ห้องปฏิบัติการ",
-    "hazards": [
-      "สีย้อม",
-      "รีเอเจนต์ห้องปฏิบัติการ"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -2159,19 +1829,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-077",
     "sdsCode": "SDS-CHEM-077",
-    "qrCode": "QR-CHEM-077",
-    "qrPath": "/SDS/SDS-CHEM-077.pdf",
     "chemicalName": "Methyl salicylate",
-    "department": "ผลิต",
+    "department": "ไตเทียม",
     "departments": [
-      "ผลิต"
+      "ไตเทียม"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารอินทรีย์มีกลิ่น/อาจไวไฟหรือระคายเคือง",
-    "hazards": [
-      "สารอินทรีย์มีกลิ่น",
-      "อาจไวไฟหรือระคายเคือง"
-    ],
+    "departmentText": "ไตเทียม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2186,19 +1851,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-078",
     "sdsCode": "SDS-CHEM-078",
-    "qrCode": "QR-CHEM-078",
-    "qrPath": "/SDS/SDS-CHEM-078.pdf",
     "chemicalName": "Peppermint oil",
-    "department": "ผลิต",
+    "department": "จ่ายกลางและซักฟอก",
     "departments": [
-      "ผลิต"
+      "จ่ายกลางและซักฟอก"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารอินทรีย์มีกลิ่น/อาจไวไฟหรือระคายเคือง",
-    "hazards": [
-      "สารอินทรีย์มีกลิ่น",
-      "อาจไวไฟหรือระคายเคือง"
-    ],
+    "departmentText": "จ่ายกลางและซักฟอก",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2213,19 +1873,17 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-079",
     "sdsCode": "SDS-CHEM-079",
-    "qrCode": "QR-CHEM-079",
-    "qrPath": "/SDS/SDS-CHEM-079.pdf",
     "chemicalName": "Peracetic acid 4.5%, Hydrogen Peroxide",
-    "department": "ไตเทียม",
+    "department": "OPD",
     "departments": [
-      "ไตเทียม"
+      "OPD",
+      "LR",
+      "บริหาร (จัดซื้อ)",
+      "กลุ่มงานปฐมภูมิ (งานประปา)"
     ],
-    "departmentText": "ไตเทียม",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "OPD | LR | บริหาร (จัดซื้อ) | กลุ่มงานปฐมภูมิ (งานประปา)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันสารเคมี",
       "Chemical goggles",
@@ -2241,20 +1899,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-080",
     "sdsCode": "SDS-CHEM-080",
-    "qrCode": "QR-CHEM-080",
-    "qrPath": "/SDS/SDS-CHEM-080.pdf",
     "chemicalName": "Polyacrylic Acid Salt, Sodium Xylene Sulfonate",
-    "department": "จ่ายกลาง (CSSD)",
+    "department": "งานผลิต",
     "departments": [
-      "จ่ายกลาง (CSSD)"
+      "งานผลิต"
     ],
-    "departmentText": "จ่ายกลาง (CSSD)",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2269,20 +1921,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-081",
     "sdsCode": "SDS-CHEM-081",
-    "qrCode": "QR-CHEM-081",
-    "qrPath": "/SDS/SDS-CHEM-081.pdf",
     "chemicalName": "Polyoxyethylene/Sorbitan monolaurate",
-    "department": "บริหาร/แม่บ้าน",
+    "department": "ทันตกรรม",
     "departments": [
-      "บริหาร/แม่บ้าน"
+      "ทันตกรรม"
     ],
-    "departmentText": "บริหาร/แม่บ้าน",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2297,20 +1943,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-082",
     "sdsCode": "SDS-CHEM-082",
-    "qrCode": "QR-CHEM-082",
-    "qrPath": "/SDS/SDS-CHEM-082.pdf",
     "chemicalName": "Propylene glycol",
-    "department": "ผลิต",
+    "department": "ห้องแล็บ",
     "departments": [
-      "ผลิต"
+      "ห้องแล็บ"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "น้ำมัน/ไข/สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง",
-    "hazards": [
-      "น้ำมัน",
-      "ไข",
-      "สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง"
-    ],
+    "departmentText": "ห้องแล็บ",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2325,19 +1965,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-083",
     "sdsCode": "SDS-CHEM-083",
-    "qrCode": "QR-CHEM-083",
-    "qrPath": "/SDS/SDS-CHEM-083.pdf",
     "chemicalName": "Rebase Fast Liquid",
-    "department": "ทันตกรรม",
+    "department": "งานผลิต",
     "departments": [
-      "ทันตกรรม"
+      "งานผลิต"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -2353,19 +1988,15 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-084",
     "sdsCode": "SDS-CHEM-084",
-    "qrCode": "QR-CHEM-084",
-    "qrPath": "/SDS/SDS-CHEM-084.pdf",
     "chemicalName": "Safranin (Gram stain)",
-    "department": "LAB",
+    "department": "จ่ายกลางและซักฟอก",
     "departments": [
-      "LAB"
+      "จ่ายกลางและซักฟอก",
+      "กลุ่มงานปฐมภูมิ (งานประปา)"
     ],
-    "departmentText": "LAB",
-    "hazardGroup": "สีย้อม/รีเอเจนต์ห้องปฏิบัติการ",
-    "hazards": [
-      "สีย้อม",
-      "รีเอเจนต์ห้องปฏิบัติการ"
-    ],
+    "departmentText": "จ่ายกลางและซักฟอก | กลุ่มงานปฐมภูมิ (งานประปา)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Goggles",
@@ -2381,19 +2012,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-085",
     "sdsCode": "SDS-CHEM-085",
-    "qrCode": "QR-CHEM-085",
-    "qrPath": "/SDS/SDS-CHEM-085.pdf",
     "chemicalName": "Salicylic acid",
-    "department": "ผลิต",
+    "department": "ทันตกรรม",
     "departments": [
-      "ผลิต"
+      "ทันตกรรม"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "กรด/สารกัดกร่อนหรือระคายเคือง",
-    "hazards": [
-      "กรด",
-      "สารกัดกร่อนหรือระคายเคือง"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือกันกรด",
       "Chemical goggles",
@@ -2409,19 +2035,15 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-086",
     "sdsCode": "SDS-CHEM-086",
-    "qrCode": "QR-CHEM-086",
-    "qrPath": "/SDS/SDS-CHEM-086.pdf",
     "chemicalName": "Sodium Hypochlorite 10%",
-    "department": "ปฐมภูมิ",
+    "department": "ทันตกรรม",
     "departments": [
-      "ปฐมภูมิ"
+      "ทันตกรรม",
+      "OPD"
     ],
-    "departmentText": "ปฐมภูมิ",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "ทันตกรรม | OPD",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Chemical goggles",
@@ -2437,19 +2059,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-087",
     "sdsCode": "SDS-CHEM-087",
-    "qrCode": "QR-CHEM-087",
-    "qrPath": "/SDS/SDS-CHEM-087.pdf",
     "chemicalName": "Sodium Hypochlorite 2.5%",
-    "department": "ทันตกรรม",
+    "department": "กลุ่มงานปฐมภูมิ (งานประปา)",
     "departments": [
-      "ทันตกรรม"
+      "กลุ่มงานปฐมภูมิ (งานประปา)"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "กลุ่มงานปฐมภูมิ (งานประปา)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Chemical goggles",
@@ -2465,19 +2082,15 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-088",
     "sdsCode": "SDS-CHEM-088",
-    "qrCode": "QR-CHEM-088",
-    "qrPath": "/SDS/SDS-CHEM-088.pdf",
     "chemicalName": "Sodium Hypochlorite 6%",
-    "department": "OPD/แม่บ้าน",
+    "department": "OPD",
     "departments": [
-      "OPD/แม่บ้าน"
+      "OPD",
+      "งานผลิต"
     ],
-    "departmentText": "OPD/แม่บ้าน",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "OPD | งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Chemical goggles",
@@ -2493,19 +2106,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-089",
     "sdsCode": "SDS-CHEM-089",
-    "qrCode": "QR-CHEM-089",
-    "qrPath": "/SDS/SDS-CHEM-089.pdf",
     "chemicalName": "Sodium Hypochlorite Hydrated",
-    "department": "ปฐมภูมิ",
+    "department": "งานผลิต",
     "departments": [
-      "ปฐมภูมิ"
+      "งานผลิต"
     ],
-    "departmentText": "ปฐมภูมิ",
-    "hazardGroup": "สารออกซิไดซ์/กัดกร่อน",
-    "hazards": [
-      "สารออกซิไดซ์",
-      "กัดกร่อน"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "Chemical goggles",
@@ -2521,20 +2129,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-090",
     "sdsCode": "SDS-CHEM-090",
-    "qrCode": "QR-CHEM-090",
-    "qrPath": "/SDS/SDS-CHEM-090.pdf",
     "chemicalName": "Sodium Lauryl Sulfate",
-    "department": "ผลิต/หน่วยใช้กลาง",
+    "department": "กลุ่มงานปฐมภูมิ (งานประปา)",
     "departments": [
-      "ผลิต/หน่วยใช้กลาง"
+      "กลุ่มงานปฐมภูมิ (งานประปา)"
     ],
-    "departmentText": "ผลิต/หน่วยใช้กลาง",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "กลุ่มงานปฐมภูมิ (งานประปา)",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2549,19 +2151,16 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-091",
     "sdsCode": "SDS-CHEM-091",
-    "qrCode": "QR-CHEM-091",
-    "qrPath": "/SDS/SDS-CHEM-091.pdf",
     "chemicalName": "Stearyl alcohol",
-    "department": "ผลิต",
+    "department": "OPD",
     "departments": [
-      "ผลิต"
+      "OPD",
+      "IPD",
+      "กายภาพบำบัด"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "OPD | IPD | กายภาพบำบัด",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -2577,18 +2176,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-092",
     "sdsCode": "SDS-CHEM-092",
-    "qrCode": "QR-CHEM-092",
-    "qrPath": "/SDS/SDS-CHEM-092.pdf",
     "chemicalName": "Temephos 1%",
-    "department": "ปฐมภูมิ",
+    "department": "ทันตกรรม",
     "departments": [
-      "ปฐมภูมิ"
+      "ทันตกรรม"
     ],
-    "departmentText": "ปฐมภูมิ",
-    "hazardGroup": "สารกำจัดแมลง",
-    "hazards": [
-      "สารกำจัดแมลง"
-    ],
+    "departmentText": "ทันตกรรม",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตา",
@@ -2604,20 +2199,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-093",
     "sdsCode": "SDS-CHEM-093",
-    "qrCode": "QR-CHEM-093",
-    "qrPath": "/SDS/SDS-CHEM-093.pdf",
     "chemicalName": "Ultrasound Gel",
-    "department": "OPD/หน่วยตรวจ",
+    "department": "งานผลิต",
     "departments": [
-      "OPD/หน่วยตรวจ"
+      "งานผลิต"
     ],
-    "departmentText": "OPD/หน่วยตรวจ",
-    "hazardGroup": "น้ำยาทำความสะอาด/ฆ่าเชื้อ/สารลดแรงตึงผิว",
-    "hazards": [
-      "น้ำยาทำความสะอาด",
-      "ฆ่าเชื้อ",
-      "สารลดแรงตึงผิว"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2632,19 +2221,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-094",
     "sdsCode": "SDS-CHEM-094",
-    "qrCode": "QR-CHEM-094",
-    "qrPath": "/SDS/SDS-CHEM-094.pdf",
     "chemicalName": "Unifast trad",
-    "department": "ทันตกรรม",
+    "department": "งานผลิต",
     "departments": [
-      "ทันตกรรม"
+      "งานผลิต"
     ],
-    "departmentText": "ทันตกรรม",
-    "hazardGroup": "สารไวไฟ/ตัวทำละลาย",
-    "hazards": [
-      "สารไวไฟ",
-      "ตัวทำละลาย"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือที่ SDS ระบุ",
       "Goggles",
@@ -2660,20 +2244,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-095",
     "sdsCode": "SDS-CHEM-095",
-    "qrCode": "QR-CHEM-095",
-    "qrPath": "/SDS/SDS-CHEM-095.pdf",
     "chemicalName": "White oil",
-    "department": "ผลิต",
+    "department": "งานผลิต",
     "departments": [
-      "ผลิต"
+      "งานผลิต"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "น้ำมัน/ไข/สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง",
-    "hazards": [
-      "น้ำมัน",
-      "ไข",
-      "สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
@@ -2688,20 +2266,14 @@ window.CHEMICAL_DATA = [
   {
     "id": "CHEM-096",
     "sdsCode": "SDS-CHEM-096",
-    "qrCode": "QR-CHEM-096",
-    "qrPath": "/SDS/SDS-CHEM-096.pdf",
     "chemicalName": "White vaseline",
-    "department": "ผลิต",
+    "department": "งานผลิต",
     "departments": [
-      "ผลิต"
+      "งานผลิต"
     ],
-    "departmentText": "ผลิต",
-    "hazardGroup": "น้ำมัน/ไข/สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง",
-    "hazards": [
-      "น้ำมัน",
-      "ไข",
-      "สารอินทรีย์ความเสี่ยงต่ำถึงปานกลาง"
-    ],
+    "departmentText": "งานผลิต",
+    "hazardGroup": "",
+    "hazards": [],
     "ppe": [
       "ถุงมือไนไตรล์",
       "แว่นตานิรภัย",
